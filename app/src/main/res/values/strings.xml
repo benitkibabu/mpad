@@ -1,0 +1,134 @@
+<resources>
+    <string name="app_name" translatable="false">Nci Go</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Login </string>
+
+    <string name="student_id_hint" translatable="false">x1234567@student.ncirl.ie</string>
+    <string name="password_hint">Enter password</string>
+    <string name="image_view_cd">Content image here</string>
+    <string name="set_reminder">Set A Reminder</string>
+    <string name="college_name" translatable="false">NCI</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_set_reminder">Set A Reminder</string>
+
+    <string name="update_title">Updates</string>
+    <string name="nci_su_title" translatable="false">Nci SU</string>
+    <string name="reminder_title">Reminder</string>
+    <string name="timetable_title">Timetable</string>
+    <string name="nci360_title" translatable="false">Nci 360</string>
+    <string name="settings_title">Settings</string>
+    <string name="about_title">About</string>
+    <string name="account_title">Account</string>
+    <string name="logout_title">Logout</string>
+    <string name="remove_text">Remove</string>
+
+    <string name="about_nci_360">NCI360 is a service which allows you to interact with the National
+        College of Ireland\'s administrative and support services.
+    From these pages you will be able request information and services from Student Support ,
+        Careers \&amp; Placements and IT Support staff</string>
+    <string name="title_activity_nci_three_sixty">Nci 360 Activity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="activity_nci360_page_title">Nci 360</string>
+    <string name="title_activity_360">ThreeSixtyPage</string>
+    <string name="view_services">View Services</string>
+    <string name="nci_map">Map</string>
+
+    <string name="dummy_text_one">News title will be placed here eventually</string>
+
+    <string name="title_activity_news">Updates</string>
+    <string name="new_ticket_text">New Ticket</string>
+    <string name="title_activity_timetable">Timetable </string>
+    <string name="add_string">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="dummy_date">21-10-2015</string>
+
+    <string-array name="type_array">
+        <item>NCI</item>
+        <item>STUDENT UNION</item>
+        <item>COMPUTING SUPPORT</item>
+        <item>LEARNING SUPPORT</item>
+        <item>NCI CAREER</item>
+    </string-array>
+    <string-array name="day_of_week_array">
+        <item>MONDAY</item>
+        <item>TUESDAY</item>
+        <item>WEDNESDAY</item>
+        <item>THURSDAY</item>
+        <item>FRIDAY</item>
+        <item>SATURDAY</item>
+        <item>SUNDAY</item>
+    </string-array>
+    <string-array name="room_name_array">
+        <item>Hardware Lab</item>
+        <item>Multimedia Lab</item>
+        <item>Cloud Competence</item>
+        <item>Liffey Suite</item>
+        <item>Jeanie Johnston</item>
+        <item>Kelly Theatre</item>
+        <item>Theatre 1</item>
+        <item>Theatre 2</item>
+        <item>Theatre 3</item>
+        <item>SCR 1</item>
+        <item>SCR 2</item>
+        <item>SCR 3</item>
+        <item>Room 1.02</item>
+        <item>Room 1.03</item>
+        <item>Room 1.04</item>
+        <item>Room 1.06</item>
+        <item>Room 1.07</item>
+        <item>Room 1.08</item>
+        <item>Room 2.02</item>
+        <item>Room 2.03</item>
+        <item>Room 2.04</item>
+        <item>Room 2.05</item>
+        <item>Room 2.06</item>
+        <item>Room 2.07</item>
+        <item>Room 2.08</item>
+        <item>Room 3.02</item>
+        <item>Room 3.03</item>
+        <item>Room 3.05</item>
+        <item>Room 3.06</item>
+        <item>Room 3.07</item>
+        <item>Room 3.08</item>
+        <item>Room 4.02</item>
+        <item>Room 4.03</item>
+        <item>Room 4.04</item>
+        <item>Room 4.05</item>
+        <item>Room 4.06</item>
+        <item>Room 4.07</item>
+        <item>Room 4.08</item>
+    </string-array>
+    <string-array name="time_array">
+        <item>9:00</item>
+        <item>9:30</item>
+        <item>10:00</item>
+        <item>10:30</item>
+        <item>11:00</item>
+        <item>11:30</item>
+        <item>12:00</item>
+        <item>12:30</item>
+        <item>13:00</item>
+        <item>13:30</item>
+        <item>14:00</item>
+        <item>14:30</item>
+        <item>15:00</item>
+        <item>15:30</item>
+        <item>16:00</item>
+        <item>16:30</item>
+        <item>17:00</item>
+        <item>17:30</item>
+        <item>18:00</item>
+        <item>18:30</item>
+        <item>19:00</item>
+        <item>19:30</item>
+        <item>20:00</item>
+        <item>20:30</item>
+        <item>21:00</item>
+    </string-array>
+</resources>

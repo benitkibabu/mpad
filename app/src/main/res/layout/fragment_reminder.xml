@@ -1,0 +1,40 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentDrawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReminderFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#dddddd">
+        <ListView
+            android:layout_marginTop="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:choiceMode="singleChoice"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:dividerHeight="0dp"
+            android:divider="@android:color/transparent"
+            android:id="@+id/listView" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/set_reminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_bell_white_48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp">
+
+        </android.support.design.widget.FloatingActionButton>
+
+    </RelativeLayout>
+
+</LinearLayout>
