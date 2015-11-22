@@ -7,12 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.benitkibabu.models.NewsItem;
+import com.benitkibabu.models.UpdateItem;
 import com.benitkibabu.ncigomobile.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,7 @@ public class CustomNewsAdapter extends RecyclerView.Adapter<CustomNewsAdapter.Vi
 
     Context context;
     int layoutId;
-    List<NewsItem> items;
+    List<UpdateItem> items;
     OnItemClickListener clickListener;
 
     public CustomNewsAdapter(Context context, int layoutId){
@@ -39,7 +37,7 @@ public class CustomNewsAdapter extends RecyclerView.Adapter<CustomNewsAdapter.Vi
         notifyDataSetChanged();
     }
 
-    public void addAll(List<NewsItem> list) {
+    public void addAll(List<UpdateItem> list) {
         items.addAll(list);
         notifyDataSetChanged();
     }
@@ -52,7 +50,7 @@ public class CustomNewsAdapter extends RecyclerView.Adapter<CustomNewsAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final NewsItem item = items.get(position);
+        final UpdateItem item = items.get(position);
         holder.itemHolder.titleView.setText(item.getTitle());
         if(item.getBody().length() > 55) {
             String body = item.getBody().substring(0, 50) + "...";

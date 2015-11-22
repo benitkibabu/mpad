@@ -10,11 +10,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.benitkibabu.helper.DbHelper;
-import com.benitkibabu.models.NewsItem;
+import com.benitkibabu.models.UpdateItem;
 
 public class UpdatesActivity extends AppCompatActivity {
     DbHelper  db;
-    NewsItem item;
+    UpdateItem item;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +30,7 @@ public class UpdatesActivity extends AppCompatActivity {
 
         if(getIntent().hasExtra("id")){
             String id = getIntent().getStringExtra("id");
-            item = db.getNews(id);
+            item = db.getUpdate(id);
             if(item == null){
                 goBack();
             }else{

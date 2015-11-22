@@ -12,11 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -27,7 +24,7 @@ import com.benitkibabu.adapters.CustomNewsAdapter;
 import com.benitkibabu.app.AppConfig;
 import com.benitkibabu.app.AppController;
 import com.benitkibabu.helper.DbHelper;
-import com.benitkibabu.models.NewsItem;
+import com.benitkibabu.models.UpdateItem;
 import com.benitkibabu.ncigomobile.UpdatesActivity;
 import com.benitkibabu.ncigomobile.R;
 
@@ -49,8 +46,8 @@ public class UpdatesFragment extends Fragment {
     LinearLayout layout;
     SwipeRefreshLayout refreshLayout;
 
-    List<NewsItem> newsItems = new ArrayList<>();
-    List<NewsItem> tempList = new ArrayList<>();
+    List<UpdateItem> updateItems = new ArrayList<>();
+    List<UpdateItem> tempList = new ArrayList<>();
 
     String[] typeList;
 
@@ -100,7 +97,7 @@ public class UpdatesFragment extends Fragment {
         adapter.setOnItemClickListener(new CustomNewsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                NewsItem item = tempList.get(position);
+                UpdateItem item = tempList.get(position);
                 Intent i = new Intent(getActivity().getBaseContext(), UpdatesActivity.class);
                 i.putExtra("id", item.getId());
                 startActivity(i);
@@ -142,14 +139,14 @@ public class UpdatesFragment extends Fragment {
     }
 
     void filterList() {
-        if (newsItems != null) {
+        if (updateItems != null) {
             adapter.clear();
             tempList.clear();
-            for (NewsItem i : newsItems) {
+            for (UpdateItem i : updateItems) {
                 tempList.add(i);
             }
             if (tempList.isEmpty()) {
-                NewsItem item = new NewsItem("0", "No Updates", "No Updates", "Unknown", "------");
+                UpdateItem item = new UpdateItem("0", "No Updates", "No Updates", "Unknown", "------");
                 tempList.add(item);
             }
             adapter.addAll(tempList);
@@ -159,47 +156,46 @@ public class UpdatesFragment extends Fragment {
     private void newsList() {
         String req = "get_news";
         refreshLayout.setRefreshing(true);
-        Uri url = Uri.parse(AppConfig.API_URL)
+        Uri url = Uri.parse(AppConfig.API_UPD_URL)
                 .buildUpon()
-                .appendQueryParameter("tag", "getAllNews")
+                .appendQueryParameter("tag", "getUpdates")
                 .build();
         StringRequest request = new StringRequest(Request.Method.GET, url.toString(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d("News response", response);
-                        db.removeAllNews();
+                        db.removeUpdates();
 
                         if (tempList != null)
                             tempList.clear();
-                        if (newsItems != null)
-                            newsItems.clear();
+                        if (updateItems != null)
+                            updateItems.clear();
 
                         refreshLayout.setRefreshing(false);
                         try {
                             JSONObject obj = new JSONObject(response);
                             boolean error = obj.getBoolean("error");
                             if (!error) {
-                                JSONArray newsList = obj.getJSONArray("news_list");
+                                JSONArray newsList = obj.getJSONArray("result");
                                 for (int i = 0; i < newsList.length(); i++) {
-                                    JSONObject o = newsList.getJSONObject(i);
-                                    JSONObject news = o.getJSONObject("news");
+                                    JSONObject news = newsList.getJSONObject(i);
                                     String id = news.getString("id");
                                     String title = news.getString("title");
                                     String body = news.getString("body");
                                     String type = news.getString("type");
                                     String date = news.getString("date");
 
-                                    NewsItem item = new NewsItem(id, title, body, type, date);
-                                    newsItems.add(item);
+                                    UpdateItem item = new UpdateItem(id, title, body, type, date);
+                                    updateItems.add(item);
                                 }
 
                             } else {
-                                NewsItem item = new NewsItem("0", "No News", "No News", "Unknown", "------");
-                                newsItems.add(item);
+                                UpdateItem item = new UpdateItem("0", "No Updates", "---", "Unknown", "------");
+                                updateItems.add(item);
                             }
 
-                            for (NewsItem it : newsItems) {
+                            for (UpdateItem it : updateItems) {
                                 db.addNews(it);
                             }
 
@@ -214,7 +210,7 @@ public class UpdatesFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 refreshLayout.setRefreshing(false);
-                Log.d("News Error", "Error " + error.getMessage());
+                Log.d("Updates Error", "Error " + error.getMessage());
             }
         });
         AppController.getInstance().addToRequestQueue(request, req);

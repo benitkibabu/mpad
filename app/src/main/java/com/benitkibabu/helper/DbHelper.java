@@ -6,12 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.benitkibabu.models.NewsItem;
+import com.benitkibabu.models.UpdateItem;
 import com.benitkibabu.models.ReminderItem;
 import com.benitkibabu.models.Timetable;
 import com.benitkibabu.models.User;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,9 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String TB_REMINDER = "reminder";
     private static final String TB_TIMETABLE = "timetable";
     private static final String TB_USER = "user";
-    private static final String TB_NEWS = "news";
+    private static final String TB_UPDATE = "update";
+    private static final String TB_SERVICE = "service";
+    private static final String TB_APPOINTMENT = "appointment";
 
     private static final String KEY_ID = "id";
 
@@ -77,11 +78,29 @@ public class DbHelper extends SQLiteOpenHelper {
             + KEY_DUE_DATE + " DATETIME " + ")";
 
     private static final String CREATE_NEWS_TABLE = "CREATE TABLE "
-            + TB_NEWS + "("
+            + TB_UPDATE + "("
             + KEY_ID + " TEXT PRIMARY KEY, "
             + KEY_TITLE + " TEXT, "
             + KEY_BODY + " TEXT, "
             + KEY_TYPE + " TEXT, "
+            + KEY_DATE + " DATE " + ")";
+
+    private static final String CREATE_SERVICE_TABLE = "CREATE TABLE "
+            + TB_SERVICE + "("
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + KEY_STUDENT_NO + " TEXT, "
+            + KEY_TITLE + " TEXT, "
+            + KEY_BODY + " TEXT, "
+            + KEY_STATUS + " TEXT, "
+            + KEY_DATE + " DATE " + ")";
+
+    private static final String CREATE_APPOINTMENT_TABLE = "CREATE TABLE "
+            + TB_APPOINTMENT + "("
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + KEY_STUDENT_NO + " TEXT, "
+            + KEY_TITLE + " TEXT, "
+            + KEY_BODY + " TEXT, "
+            + KEY_STATUS + " TEXT, "
             + KEY_DATE + " DATE " + ")";
 
     public DbHelper(Context context) {
@@ -94,14 +113,18 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_REMINDER_TABLE);
         db.execSQL(CREATE_NEWS_TABLE);
         db.execSQL(CREATE_TIMETABLE_TABLE);
+        db.execSQL(CREATE_SERVICE_TABLE);
+        db.execSQL(CREATE_APPOINTMENT_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TB_USER);
         db.execSQL("DROP TABLE IF EXISTS " + TB_REMINDER);
-        db.execSQL("DROP TABLE IF EXISTS " + TB_NEWS);
-        db.execSQL("DROP TABLE IF EXISTS " + CREATE_TIMETABLE_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + TB_UPDATE);
+        db.execSQL("DROP TABLE IF EXISTS " + TB_TIMETABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + TB_SERVICE);
+        db.execSQL("DROP TABLE IF EXISTS " + TB_APPOINTMENT);
 
         onCreate(db);
     }
@@ -114,8 +137,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(KEY_R_SHORT_DESC, item.getDescription());
         values.put(KEY_DUE_DATE, item.getDueDate());
 
-        long id =  db.insert(TB_REMINDER,null, values);
-        return id;
+        return db.insert(TB_REMINDER,null, values);
     }
 
     public long setTimetable(Timetable t){
@@ -131,7 +153,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return db.insert(TB_TIMETABLE, null, v);
     }
 
-    public long addNews(NewsItem item){
+    public long addNews(UpdateItem item){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_ID, item.getId());
@@ -139,7 +161,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(KEY_BODY, item.getBody());
         values.put(KEY_TYPE, item.getNewsType());
         values.put(KEY_DATE, item.getDate());
-        return db.insert(TB_NEWS, null, values);
+        return db.insert(TB_UPDATE, null, values);
     }
 
     public long addUser(User user){
@@ -170,13 +192,13 @@ public class DbHelper extends SQLiteOpenHelper {
         return u;
     }
 
-    public NewsItem getNews(String id){
-        NewsItem item;
+    public UpdateItem getUpdate(String id){
+        UpdateItem item;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + TB_NEWS + " WHERE " + KEY_ID + " = " + id, null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TB_UPDATE + " WHERE " + KEY_ID + " = " + id, null);
 
         if(c!=null && c.getCount() > 0 && c.moveToFirst()){
-            item = new NewsItem(c.getString(0), c.getString(1), c.getString(2),
+            item = new UpdateItem(c.getString(0), c.getString(1), c.getString(2),
                     c.getString(3), c.getString(4));
             c.close();
         }else{
@@ -185,14 +207,14 @@ public class DbHelper extends SQLiteOpenHelper {
         return item;
     }
 
-    public List<NewsItem> getAllNews(){
+    public List<UpdateItem> getUpdates(){
         SQLiteDatabase db = this.getReadableDatabase();
-        List<NewsItem> items = new ArrayList<>();
+        List<UpdateItem> items = new ArrayList<>();
 
-        Cursor c = db.rawQuery("SELECT * FROM " + TB_NEWS + " ORDER BY " + KEY_DATE + " ASC", null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TB_UPDATE + " ORDER BY " + KEY_DATE + " ASC", null);
         if(c!= null &&  c.getCount() > 0 && c.moveToFirst()){
             do{
-                NewsItem item = new NewsItem(c.getString(0), c.getString(1), c.getString(2),
+                UpdateItem item = new UpdateItem(c.getString(0), c.getString(1), c.getString(2),
                         c.getString(3), c.getString(4));
 
                 items.add(item);
@@ -246,15 +268,15 @@ public class DbHelper extends SQLiteOpenHelper {
         int c = db.delete(TB_REMINDER, KEY_ID + "=?", new String[]{String.valueOf(id)});
         return c;
     }
-    public int removeNews(String id){
+    public int removeUpdate(String id){
         SQLiteDatabase db = this.getWritableDatabase();
-        int c = db.delete(TB_NEWS, KEY_ID + "=?", new String[]{String.valueOf(id)});
+        int c = db.delete(TB_UPDATE, KEY_ID + "=?", new String[]{String.valueOf(id)});
         return c;
     }
 
-    public int removeAllNews(){
+    public int removeUpdates(){
         SQLiteDatabase db = this.getWritableDatabase();
-        int c = db.delete(TB_NEWS,null, null);
+        int c = db.delete(TB_UPDATE,null, null);
         return c;
     }
 

@@ -105,7 +105,7 @@ public class ReminderFragment extends Fragment {
 //    public boolean onOptionsItemSelected(MenuItem item) {
 //        switch (item.getItemId()) {
 //            case R.id.action_remove_reminder:
-//                //ReminderNotification.notify(getActivity(), "Testing Notification", "Some work to be done here", 360);
+//                //MyNotification.notify(getActivity(), "Testing Notification", "Some work to be done here", 360);
 //                break;
 //        }
 //        return super.onOptionsItemSelected(item);
