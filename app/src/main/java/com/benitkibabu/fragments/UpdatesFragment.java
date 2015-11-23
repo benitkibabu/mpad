@@ -122,19 +122,6 @@ public class UpdatesFragment extends Fragment {
                 android.R.color.holo_green_dark,
                 android.R.color.holo_orange_dark
         );
-
-//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                ((TextView) parent.getChildAt(0)).setTextColor(
-//                        getResources().getColor(R.color.white));
-//                filterList();
-//            }
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
         return view;
     }
 

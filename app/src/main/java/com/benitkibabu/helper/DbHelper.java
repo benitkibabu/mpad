@@ -25,7 +25,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String TB_REMINDER = "reminder";
     private static final String TB_TIMETABLE = "timetable";
     private static final String TB_USER = "user";
-    private static final String TB_UPDATE = "update";
+    private static final String TB_UPDATE = "ltupdates";
     private static final String TB_SERVICE = "service";
     private static final String TB_APPOINTMENT = "appointment";
 

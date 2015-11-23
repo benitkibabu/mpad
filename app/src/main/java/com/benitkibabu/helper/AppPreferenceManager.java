@@ -28,6 +28,12 @@ public class AppPreferenceManager {
 
     }
 
+    public void setString(String tag, String value){
+        editor = pref.edit();
+        editor.putString(tag, value);
+        editor.apply();
+    }
+
     public void setLogin(boolean isLoggedIn){
         editor = pref.edit();
         editor.putBoolean(KEY_IS_LOGGEDIN, isLoggedIn);
@@ -46,6 +52,10 @@ public class AppPreferenceManager {
 
     public int getRefreshRate(){
         return pref.getInt(KEY_REFRESH_RATE, 30);
+    }
+
+    public String getTagValue(String tag){
+        return pref.getString(tag, "Null");
     }
 }
 

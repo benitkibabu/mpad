@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,11 +28,13 @@ import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Course;
 import com.benitkibabu.models.Student;
 import com.benitkibabu.models.User;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,6 +50,9 @@ public class LoginActivity extends AppCompatActivity {
 
     AppPreferenceManager pref;
     DbHelper db;
+
+    GoogleCloudMessaging gcm;
+    String regid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +120,9 @@ public class LoginActivity extends AppCompatActivity {
                             String email = st.getString("student_email");
 
                             student = new Student(num, email);
+
+                            getRegId();
+
                             ModuleListDialog();
                         }else{
                             Snackbar.make(view, "Please enter correct details", Snackbar.LENGTH_LONG).show();
@@ -221,5 +230,34 @@ public class LoginActivity extends AppCompatActivity {
             });
             builder.show();
         }
+    }
+
+
+
+    public void getRegId(){
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                String msg = "";
+                try {
+                    if (gcm == null) {
+                        gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+                    }
+                    regid = gcm.register(AppConfig.SENDER_ID);
+                    pref.setString("regId", regid);
+                    msg = "ID=" + regid;
+                    Log.i("GCM",  msg);
+
+                } catch (IOException ex) {
+                    msg = "Error :" + ex.getMessage();
+                }
+                return msg;
+            }
+
+            @Override
+            protected void onPostExecute(String msg) {
+                Snackbar.make(studentId, msg + "\n", Snackbar.LENGTH_LONG).show();
+            }
+        }.execute(null, null, null);
     }
 }
