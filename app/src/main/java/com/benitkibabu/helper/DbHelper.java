@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.benitkibabu.models.Student;
 import com.benitkibabu.models.UpdateItem;
 import com.benitkibabu.models.ReminderItem;
 import com.benitkibabu.models.Timetable;
@@ -24,7 +25,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final String TB_REMINDER = "reminder";
     private static final String TB_TIMETABLE = "timetable";
-    private static final String TB_USER = "user";
+    private static final String TB_STUDENT = "student";
     private static final String TB_UPDATE = "ltupdates";
     private static final String TB_SERVICE = "service";
     private static final String TB_APPOINTMENT = "appointment";
@@ -33,8 +34,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final String KEY_STUDENT_NO = "student_no";
     private static final String KEY_EMAIL = "email";
-    private static final String KEY_COURSE_NAME = "c_name";
-    private static final String KEY_COURSE_CODE = "c_code";
+    private static final String KEY_PASSWORD = "password";
+    private static final String KEY_REGID = "reg_id";
+    private static final String KEY_COURSE_NAME = "course";
 
     private static final String KEY_R_NAME = "name";
     private static final String KEY_R_SHORT_DESC = "short_desc";
@@ -65,12 +67,13 @@ public class DbHelper extends SQLiteOpenHelper {
             + KEY_ROOM
             + " TEXT )" ;
 
-    private static final String CREATE_USER_TABLE = "CREATE TABLE "
-            + TB_USER + "("
+    private static final String CREATE_STUDENT_TABLE = "CREATE TABLE "
+            + TB_STUDENT + "("
             + KEY_STUDENT_NO + " TEXT PRIMARY KEY,"
             + KEY_EMAIL + " TEXT,"
-            + KEY_COURSE_NAME + " TEXT,"
-            + KEY_COURSE_CODE + " TEXT )" ;
+            + KEY_PASSWORD + " TEXT,"
+            + KEY_REGID + " TEXT,"
+            + KEY_COURSE_NAME + " TEXT )" ;
 
     private static final String CREATE_REMINDER_TABLE = "CREATE TABLE "
             + TB_REMINDER + "("+KEY_ID + " TEXT PRIMARY KEY, "
@@ -109,7 +112,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_USER_TABLE);
+        db.execSQL(CREATE_STUDENT_TABLE);
         db.execSQL(CREATE_REMINDER_TABLE);
         db.execSQL(CREATE_NEWS_TABLE);
         db.execSQL(CREATE_TIMETABLE_TABLE);
@@ -119,7 +122,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TB_USER);
+        db.execSQL("DROP TABLE IF EXISTS " + TB_STUDENT);
         db.execSQL("DROP TABLE IF EXISTS " + TB_REMINDER);
         db.execSQL("DROP TABLE IF EXISTS " + TB_UPDATE);
         db.execSQL("DROP TABLE IF EXISTS " + TB_TIMETABLE);
@@ -164,27 +167,33 @@ public class DbHelper extends SQLiteOpenHelper {
         return db.insert(TB_UPDATE, null, values);
     }
 
-    public long addUser(User user){
+    public long addUser(Student student){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(KEY_STUDENT_NO, user.getStudentNo());
-        values.put(KEY_EMAIL, user.getEmail());
-        values.put(KEY_COURSE_NAME, user.getCourseName());
-        values.put(KEY_COURSE_CODE, user.getCourseCode());
+        values.put(KEY_STUDENT_NO, student.getStudentID());
+        values.put(KEY_EMAIL, student.getStudentEmail());
+        values.put(KEY_PASSWORD, student.getPassword());
+        values.put(KEY_REGID, student.getReg_id());
+        values.put(KEY_COURSE_NAME, student.getCourse());
 
-        return  db.insert(TB_USER, null, values);
+        return  db.insert(TB_STUDENT, null, values);
     }
 
-    public User getUser(){
+    public Student getUser(){
         SQLiteDatabase db = this.getReadableDatabase();
-        User u = null;
-        Cursor c = db.rawQuery("SELECT * FROM " + TB_USER , null);
+        Student u = null;
+        Cursor c = db.rawQuery("SELECT * FROM " + TB_STUDENT, null);
 
         if (c != null) {
             if(c.getCount() > 0) {
                 c.moveToFirst();
-                u = new User(c.getString(0), c.getString(1), c.getString(2), c.getString(3));
+                u = new Student(
+                        c.getString(c.getColumnIndex(KEY_STUDENT_NO)),
+                        c.getString(c.getColumnIndex(KEY_EMAIL)),
+                        c.getString(c.getColumnIndex(KEY_PASSWORD)),
+                        c.getString(c.getColumnIndex(KEY_REGID)),
+                        c.getString(c.getColumnIndex(KEY_COURSE_NAME)));
                 c.close();
             }
         }
@@ -198,8 +207,12 @@ public class DbHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("SELECT * FROM " + TB_UPDATE + " WHERE " + KEY_ID + " = " + id, null);
 
         if(c!=null && c.getCount() > 0 && c.moveToFirst()){
-            item = new UpdateItem(c.getString(0), c.getString(1), c.getString(2),
-                    c.getString(3), c.getString(4));
+            item = new UpdateItem(
+                    c.getString(0),
+                    c.getString(1),
+                    c.getString(2),
+                    c.getString(3),
+                    c.getString(4));
             c.close();
         }else{
             item = null;
@@ -259,7 +272,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public int deleteUser(){
         SQLiteDatabase db = this.getWritableDatabase();
-        int c = db.delete(TB_USER, null, null);
+        int c = db.delete(TB_STUDENT, null, null);
         return c;
     }
 

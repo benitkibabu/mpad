@@ -23,8 +23,10 @@ public final class AppConfig {
     public static final String SENDER_ID = "1059451623513";
     public static final String EXTRA_MESSAGE = "message";
     public static final String DISPLAY_MSG_ACTION = "com.benitkibabu.app.DISPLAY_MESSAGE";
+
     public static final String API_URL = "http://itrackerapp.gear.host/ncigo/";
     public static final String API_UPD_URL = "http://bendev.gear.host/api/";
+    public static final String LOGIN_API_URL = "http://bendev.gear.host/api/student.php";
     public static final String TIMETABLE_URL = "http://itrackerapp.gear.host/ncigo/timetable/mscmt_pt_mad_1.pdf";
 
     static DateFormat dateTimeFormat =  new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());

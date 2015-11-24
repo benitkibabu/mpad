@@ -81,6 +81,12 @@
                     android:text="App Version"
                     android:id="@+id/set_app_version_tv" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="App Version"
+                    android:id="@+id/set_device_id_tv" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

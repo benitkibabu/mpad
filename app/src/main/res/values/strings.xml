@@ -48,6 +48,14 @@
     <string name="cancel">Cancel</string>
     <string name="dummy_date">21-10-2015</string>
 
+
+    <string-array name="course_list">
+        <item name="BAMPNCI">BA in Management Practice</item>
+        <item name="BSHC">Bsc Bachelor Honours in Computing</item>
+        <item name="BSHCENC">BSc (Hons) in Computing - Evening</item>
+        <item name="CBANC">Certificate in Business Analysis</item>
+    </string-array>
+
     <string-array name="type_array">
         <item>NCI</item>
         <item>STUDENT UNION</item>

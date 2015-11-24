@@ -1,6 +1,5 @@
 package com.benitkibabu.ncigomobile;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -8,17 +7,23 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.benitkibabu.app.AppConfig;
@@ -41,8 +46,8 @@ import java.util.List;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText studentId;
-    EditText password;
+    EditText studentId, password;
+    Spinner courseSpinner;
 
     Student student;
     Course studentCourse;
@@ -63,7 +68,13 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         pref = new AppPreferenceManager(this);
-        //pref.setLogin(false);
+
+        regid = pref.getStringValue("regId");
+
+        if(regid.equalsIgnoreCase("null")){
+            getRegId();
+        }
+
         db = new DbHelper(this);
 
         if(pref.isLoggedIn()){
@@ -74,19 +85,21 @@ public class LoginActivity extends AppCompatActivity {
             db.deleteUser();
         }
 
-        getCourse();
+        //getCourse();
 
         studentId = (EditText) findViewById(R.id.student_id_field);
-       //password = (EditText) findViewById(R.id.password_field);
+        password = (EditText) findViewById(R.id.password_field);
+        courseSpinner = (Spinner) findViewById(R.id.log_course_spinner);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.loginBtn);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String id = studentId.getText().toString();
-                //String pass = password.getText().toString();
-                if (!id.isEmpty() /* && !pass.isEmpty()*/) {
-                    getStudent(id, v);
+                String pass = password.getText().toString();
+                String courseName = courseSpinner.getSelectedItem().toString();
+                if (!id.isEmpty() && !pass.isEmpty()) {
+                    postStudent(id, pass, courseName, v);
                 } else {
                     Snackbar.make(v, "Please enter correct details", Snackbar.LENGTH_LONG).show();
                 }
@@ -95,16 +108,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    void getStudent(final String number, final View view){
-        String req = "getStudent";
-
-        Uri url =  Uri.parse(AppConfig.API_URL)
-                .buildUpon()
-                .appendQueryParameter("tag", req)
-                .appendQueryParameter("number", number)
-                .build();
-
-        StringRequest request = new StringRequest(Request.Method.GET, url.toString(),
+    //Post Request
+    void postStudent(final String number, final String pass, final String courseName, final View view){
+        final String req = "student";
+        final String email = number + "@student.ncirl.ie";
+        StringRequest request = new StringRequest(Request.Method.POST,AppConfig.LOGIN_API_URL,
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
@@ -114,18 +122,17 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject object = new JSONObject(response);
                         boolean error = object.getBoolean("error");
                         if(!error){
-                            JSONArray jr = object.getJSONArray("students");
-                            JSONObject st = jr.getJSONObject(0);
-                            String num = st.getString("student_number");
+                            JSONObject st = object.getJSONObject("0");
+                            String num = st.getString("student_no");
                             String email = st.getString("student_email");
+                            String pass = st.getString("password");
+                            String reg_id = st.getString("reg_id");
+                            String course = st.getString("course");
 
-                            student = new Student(num, email);
-
-                            getRegId();
-
-                            ModuleListDialog();
+                            student = new Student(num, email, pass, reg_id, course);
+                            goToMain();
                         }else{
-                            Snackbar.make(view, "Please enter correct details", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(view, "Failed:" + object.getString("error_msg"), Snackbar.LENGTH_LONG).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -135,58 +142,84 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                NetworkResponse networkResponse = error.networkResponse;
+                if (networkResponse != null) {
+                    Log.e("Volley", "Error. HTTP Status Code:"+networkResponse.statusCode);
+                }
 
+                if (error instanceof TimeoutError) {
+                    Log.e("Volley", "TimeoutError");
+                }else if(error instanceof NoConnectionError){
+                    Log.e("Volley", "NoConnectionError");
+                } else if (error instanceof AuthFailureError) {
+                    Log.e("Volley", "AuthFailureError");
+                } else if (error instanceof ServerError) {
+                    Log.e("Volley", "ServerError");
+                } else if (error instanceof NetworkError) {
+                    Log.e("Volley", "NetworkError");
+                } else if (error instanceof ParseError) {
+                    Log.e("Volley", "ParseError");
+                }
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("tag", req);
+                params.put("student_no",number);
+                params.put("email", email);
+                params.put("password", pass);
+                params.put("reg_id", regid);
+                params.put("course",courseName);
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                return params;
+            }
+        };
 
         AppController.getInstance().addToRequestQueue(request, req);
-
     }
 
-    public void goToMain(){
-        User user = new User(student.getStudentID(), student.getStudentEmail(),
-                studentCourse.getName(), studentCourse.getCode());
-        long id = db.addUser(user);
-        if(id != -1) {
-            pref.setLogin(true);
-            Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-            startActivity(i);
-            finish();
-        }else{
-            Snackbar.make(studentId, "Please try again!", Snackbar.LENGTH_LONG).show();
-        }
-    }
-
-    void getCourse(){
-        String req = "getAllCourse";
-
-        Uri url =  Uri.parse(AppConfig.API_URL)
+    //Get Request
+    void getStudent(final String number, final String pass, final String courseName, final View view){
+        final String req = "student";
+        final String email = number + "@student.ncirl.ie";
+        Uri url =  Uri.parse(AppConfig.LOGIN_API_URL)
                 .buildUpon()
                 .appendQueryParameter("tag", req)
+                .appendQueryParameter("student_no", number)
+                .appendQueryParameter("email", email)
+                .appendQueryParameter("password", pass)
+                .appendQueryParameter("reg_id", regid)
+                .appendQueryParameter("course", courseName)
                 .build();
-
+        Log.d("URL", url.toString());
         StringRequest request = new StringRequest(Request.Method.GET, url.toString(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d("Login Activity", response);
-                        if(courseList != null){
-                            courseList.clear();
-                        }
+
                         try {
                             JSONObject object = new JSONObject(response);
                             boolean error = object.getBoolean("error");
                             if(!error){
-                                JSONArray st = object.getJSONArray("courses");
-                                for(int i = 0; i < st.length(); i++){
-                                    JSONObject c = st.getJSONObject(i);
-                                    JSONObject cc = c.getJSONObject("course");
-                                    Course course = new Course(
-                                            cc.getString("code"),
-                                            cc.getString("name"));
-                                    courseList.add(course);
-                                }
+                                JSONObject st = object.getJSONObject("0");
+                                String num = st.getString("student_no");
+                                String email = st.getString("student_email");
+                                String pass = st.getString("password");
+                                String reg_id = st.getString("reg_id");
+                                String course = st.getString("course");
 
+                                student = new Student(num, email, pass, reg_id, course);
+                                goToMain();
+                            }else{
+                                Snackbar.make(view, "Failed:" + object.getString("error_msg"), Snackbar.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -196,12 +229,40 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                NetworkResponse networkResponse = error.networkResponse;
+                if (networkResponse != null) {
+                    Log.e("Volley", "Error. HTTP Status Code:"+networkResponse.statusCode);
+                }
 
+                if (error instanceof TimeoutError) {
+                    Log.e("Volley", "TimeoutError");
+                }else if(error instanceof NoConnectionError){
+                    Log.e("Volley", "NoConnectionError");
+                } else if (error instanceof AuthFailureError) {
+                    Log.e("Volley", "AuthFailureError");
+                } else if (error instanceof ServerError) {
+                    Log.e("Volley", "ServerError");
+                } else if (error instanceof NetworkError) {
+                    Log.e("Volley", "NetworkError");
+                } else if (error instanceof ParseError) {
+                    Log.e("Volley", "ParseError");
+                }
             }
         });
 
         AppController.getInstance().addToRequestQueue(request, req);
+    }
 
+    public void goToMain(){
+        long id = db.addUser(student);
+        if(id != -1) {
+            pref.setLogin(true);
+            Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(i);
+            finish();
+        }else{
+            Snackbar.make(studentId, "Please try again!", Snackbar.LENGTH_LONG).show();
+        }
     }
 
     public void ModuleListDialog() {
@@ -231,8 +292,6 @@ public class LoginActivity extends AppCompatActivity {
             builder.show();
         }
     }
-
-
 
     public void getRegId(){
         new AsyncTask<Void, Void, String>() {

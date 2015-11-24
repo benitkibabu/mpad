@@ -54,7 +54,7 @@ public class AppPreferenceManager {
         return pref.getInt(KEY_REFRESH_RATE, 30);
     }
 
-    public String getTagValue(String tag){
+    public String getStringValue(String tag){
         return pref.getString(tag, "Null");
     }
 }

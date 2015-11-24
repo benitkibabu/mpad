@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.benitkibabu.app.AppConfig;
 import com.benitkibabu.helper.AppPreferenceManager;
 import com.benitkibabu.helper.DbHelper;
+import com.benitkibabu.models.Student;
 import com.benitkibabu.models.User;
 import com.benitkibabu.ncigomobile.R;
 
@@ -46,16 +47,20 @@ public class SettingsFragment extends Fragment {
         pref = new AppPreferenceManager(getActivity().getBaseContext());
         db = new DbHelper(getActivity().getBaseContext());
 
-        User u = db.getUser();
+        Student u = db.getUser();
         TextView no = (TextView) view.findViewById(R.id.set_student_id_tv);
         TextView email = (TextView) view.findViewById(R.id.set_student_email_tv);
         TextView phone = (TextView) view.findViewById(R.id.set_phone_id_tv);
         TextView version = (TextView) view.findViewById(R.id.set_app_version_tv);
+        TextView device_id = (TextView) view.findViewById(R.id.set_device_id_tv);
 
         if(u!= null) {
-            no.setText(u.getStudentNo());
-            email.setText(u.getEmail());
+            no.setText(u.getStudentID());
+            email.setText(u.getStudentEmail());
         }
+
+        String dvidTxt = "Device ID: " + pref.getStringValue("regId");
+        device_id.setText(dvidTxt.substring(0, 50));
 
         String mobileNo = AppConfig.getMobileIMEI(getActivity().getBaseContext());
         phone.setText(mobileNo);

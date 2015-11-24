@@ -21,6 +21,7 @@ import com.benitkibabu.fragments.ReminderFragment;
 import com.benitkibabu.fragments.SettingsFragment;
 import com.benitkibabu.helper.AppPreferenceManager;
 import com.benitkibabu.helper.DbHelper;
+import com.benitkibabu.models.Student;
 import com.benitkibabu.models.User;
 
 public class HomeActivity extends AppCompatActivity
@@ -58,12 +59,12 @@ public class HomeActivity extends AppCompatActivity
         studentNumber = (TextView) v.findViewById(R.id.nav_student_number);
         courseName = (TextView) v.findViewById(R.id.nav_course_name);
 
-        User u = db.getUser();
+        Student u = db.getUser();
         if(u == null){
             logout();
         }else {
-            studentNumber.setText(u.getEmail());
-            courseName.setText(u.getCourseName());
+            studentNumber.setText(u.getStudentEmail());
+            courseName.setText(u.getCourse());
         }
 
         showFragment();
