@@ -7,27 +7,14 @@ public class UpdateItem {
     String id;
     String title;
     String body;
-    String newsType;
+    String target;
     String date;
 
-    public UpdateItem(String title, String body){
-        super();
-        this.title = title;
-        this.body = body;
-    }
-
-    public UpdateItem(String title, String body, String newsType, String date) {
-        this.title = title;
-        this.body = body;
-        this.newsType = newsType;
-        this.date = date;
-    }
-
-    public UpdateItem(String id, String title, String body, String newsType, String date) {
+    public UpdateItem(String id, String title, String body, String target, String date) {
         this.id = id;
         this.title = title;
         this.body = body;
-        this.newsType = newsType;
+        this.target = target;
         this.date = date;
     }
 
@@ -43,8 +30,8 @@ public class UpdateItem {
         return id;
     }
 
-    public String getNewsType() {
-        return newsType;
+    public String getTarget() {
+        return target;
     }
 
     public String getDate() {

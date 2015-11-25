@@ -9,23 +9,27 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.benitkibabu.app.AppConfig;
 import com.benitkibabu.models.UpdateItem;
 import com.benitkibabu.ncigomobile.R;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Ben on 30/09/2015.
  */
-public class CustomNewsAdapter extends RecyclerView.Adapter<CustomNewsAdapter.ViewHolder> {
+public class UpdatesAdapter extends RecyclerView.Adapter<UpdatesAdapter.ViewHolder> {
 
     Context context;
     int layoutId;
     List<UpdateItem> items;
     OnItemClickListener clickListener;
 
-    public CustomNewsAdapter(Context context, int layoutId){
+    public UpdatesAdapter(Context context, int layoutId){
         this.context = context;
         this.items = new ArrayList<>();
         this.layoutId = layoutId;
@@ -59,8 +63,21 @@ public class CustomNewsAdapter extends RecyclerView.Adapter<CustomNewsAdapter.Vi
         else
             holder.itemHolder.bodyView.setText(item.getBody());
 
-        holder.itemHolder.dateTv.setText(item.getDate());
+        Date d;
+        try {
+            d = AppConfig.getDate(item.getDate());
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(d);
 
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+
+            String dm = month + ", " + year;
+            holder.itemHolder.dateTv.setText(dm);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
      //   Picasso.with(context).load(imageRes).into(holder.itemHolder.imageView);
     }
 

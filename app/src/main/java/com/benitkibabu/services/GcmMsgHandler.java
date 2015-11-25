@@ -8,13 +8,6 @@ import android.os.Bundle;
 import com.benitkibabu.ncigomobile.MyNotification;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-/**
- * An {@link IntentService} subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * <p/>
- * TODO: Customize class - update intent actions, extra parameters and static
- * helper methods.
- */
 public class GcmMsgHandler extends IntentService {
 
     private static final String ACTION_FOO = "com.benitkibabu.services.action.FOO";
@@ -51,6 +44,6 @@ public class GcmMsgHandler extends IntentService {
     }
 
     public void showNotification(String title, String body){
-        MyNotification.notify(this,title,body, 360);
+       // MyNotification.notify(this,title,body, 360);
     }
 }

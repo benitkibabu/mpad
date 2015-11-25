@@ -29,9 +29,9 @@ public final class AppConfig {
     public static final String LOGIN_API_URL = "http://bendev.gear.host/api/student.php";
     public static final String TIMETABLE_URL = "http://itrackerapp.gear.host/ncigo/timetable/mscmt_pt_mad_1.pdf";
 
-    static DateFormat dateTimeFormat =  new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
-    static DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-    static DateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+    static DateFormat dateTimeFormat =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    static DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
     public static String getDateValue(Date date){
         return dateFormat.format(date);

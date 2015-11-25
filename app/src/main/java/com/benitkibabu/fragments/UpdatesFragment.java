@@ -20,12 +20,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.benitkibabu.abstracts.RecyclerViewScrollListener;
-import com.benitkibabu.adapters.CustomNewsAdapter;
+import com.benitkibabu.adapters.UpdatesAdapter;
 import com.benitkibabu.app.AppConfig;
 import com.benitkibabu.app.AppController;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.UpdateItem;
-import com.benitkibabu.ncigomobile.UpdatesActivity;
+import com.benitkibabu.ncigomobile.DetailActivity;
 import com.benitkibabu.ncigomobile.R;
 
 import org.json.JSONArray;
@@ -52,7 +52,7 @@ public class UpdatesFragment extends Fragment {
     String[] typeList;
 
     ProgressDialog pd;
-    CustomNewsAdapter adapter;
+    UpdatesAdapter adapter;
     DbHelper db;
 
     ArrayAdapter<String> spinAdapter;
@@ -90,15 +90,15 @@ public class UpdatesFragment extends Fragment {
                 android.R.layout.simple_spinner_item,
                 typeList);
 
-        adapter = new CustomNewsAdapter(getActivity(), R.layout.update_item_layout);
+        adapter = new UpdatesAdapter(getActivity(), R.layout.update_item_layout);
 
         recyclerView.setAdapter(adapter);
 
-        adapter.setOnItemClickListener(new CustomNewsAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new UpdatesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 UpdateItem item = tempList.get(position);
-                Intent i = new Intent(getActivity().getBaseContext(), UpdatesActivity.class);
+                Intent i = new Intent(getActivity().getBaseContext(), DetailActivity.class);
                 i.putExtra("id", item.getId());
                 startActivity(i);
             }
@@ -133,7 +133,7 @@ public class UpdatesFragment extends Fragment {
                 tempList.add(i);
             }
             if (tempList.isEmpty()) {
-                UpdateItem item = new UpdateItem("0", "No Updates", "No Updates", "Unknown", "------");
+                UpdateItem item = new UpdateItem("0", "No Updates", "No Updates", "Unknown", "2015-11-20 01:00:00");
                 tempList.add(item);
             }
             adapter.addAll(tempList);
@@ -170,7 +170,7 @@ public class UpdatesFragment extends Fragment {
                                     String id = news.getString("id");
                                     String title = news.getString("title");
                                     String body = news.getString("body");
-                                    String type = news.getString("type");
+                                    String type = news.getString("target");
                                     String date = news.getString("date");
 
                                     UpdateItem item = new UpdateItem(id, title, body, type, date);
@@ -178,12 +178,12 @@ public class UpdatesFragment extends Fragment {
                                 }
 
                             } else {
-                                UpdateItem item = new UpdateItem("0", "No Updates", "---", "Unknown", "------");
+                                UpdateItem item = new UpdateItem("0", "No Updates", "---", "Unknown", "2015-11-20 01:00:00");
                                 updateItems.add(item);
                             }
 
                             for (UpdateItem it : updateItems) {
-                                db.addNews(it);
+                                db.addUpdate(it);
                             }
 
                             filterList();

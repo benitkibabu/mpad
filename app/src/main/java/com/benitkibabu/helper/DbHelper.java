@@ -10,7 +10,6 @@ import com.benitkibabu.models.Student;
 import com.benitkibabu.models.UpdateItem;
 import com.benitkibabu.models.ReminderItem;
 import com.benitkibabu.models.Timetable;
-import com.benitkibabu.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ import java.util.List;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "ncigodb";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 3;
 
     private static final String TB_REMINDER = "reminder";
     private static final String TB_TIMETABLE = "timetable";
@@ -45,7 +44,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String KEY_TITLE = "title";
     private static final String KEY_BODY = "body";
     private static final String KEY_DATE = "date";
-    private static final String KEY_TYPE = "type";
+    private static final String KEY_TYPE = "target";
 
     private static final String KEY_ROOM = "room";
     private static final String KEY_START_TIME = "start";
@@ -80,13 +79,13 @@ public class DbHelper extends SQLiteOpenHelper {
             + KEY_R_NAME + " TEXT, " + KEY_R_SHORT_DESC + " TEXT,"
             + KEY_DUE_DATE + " DATETIME " + ")";
 
-    private static final String CREATE_NEWS_TABLE = "CREATE TABLE "
+    private static final String CREATE_UPDATE_TABLE = "CREATE TABLE "
             + TB_UPDATE + "("
             + KEY_ID + " TEXT PRIMARY KEY, "
             + KEY_TITLE + " TEXT, "
             + KEY_BODY + " TEXT, "
             + KEY_TYPE + " TEXT, "
-            + KEY_DATE + " DATE " + ")";
+            + KEY_DATE + " DATETIME " + ")";
 
     private static final String CREATE_SERVICE_TABLE = "CREATE TABLE "
             + TB_SERVICE + "("
@@ -114,7 +113,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_STUDENT_TABLE);
         db.execSQL(CREATE_REMINDER_TABLE);
-        db.execSQL(CREATE_NEWS_TABLE);
+        db.execSQL(CREATE_UPDATE_TABLE);
         db.execSQL(CREATE_TIMETABLE_TABLE);
         db.execSQL(CREATE_SERVICE_TABLE);
         db.execSQL(CREATE_APPOINTMENT_TABLE);
@@ -139,8 +138,9 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(KEY_R_NAME, item.getModuleName());
         values.put(KEY_R_SHORT_DESC, item.getDescription());
         values.put(KEY_DUE_DATE, item.getDueDate());
-
-        return db.insert(TB_REMINDER,null, values);
+        long id = db.insert(TB_REMINDER,null, values);
+        closeDB();
+        return id;
     }
 
     public long setTimetable(Timetable t){
@@ -152,19 +152,22 @@ public class DbHelper extends SQLiteOpenHelper {
         v.put(KEY_START_TIME, t.getStart());
         v.put(KEY_FINISH_TIME, t.getFinish());
         v.put(KEY_ROOM, t.getRoom());
-
-        return db.insert(TB_TIMETABLE, null, v);
+        long id = db.insert(TB_TIMETABLE, null, v);
+        closeDB();
+        return id;
     }
 
-    public long addNews(UpdateItem item){
+    public long addUpdate(UpdateItem item){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_ID, item.getId());
         values.put(KEY_TITLE, item.getTitle());
         values.put(KEY_BODY, item.getBody());
-        values.put(KEY_TYPE, item.getNewsType());
+        values.put(KEY_TYPE, item.getTarget());
         values.put(KEY_DATE, item.getDate());
-        return db.insert(TB_UPDATE, null, values);
+        long id = db.insert(TB_UPDATE, null, values);
+        closeDB();
+        return id;
     }
 
     public long addUser(Student student){
@@ -176,8 +179,9 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(KEY_PASSWORD, student.getPassword());
         values.put(KEY_REGID, student.getReg_id());
         values.put(KEY_COURSE_NAME, student.getCourse());
-
-        return  db.insert(TB_STUDENT, null, values);
+        long id = db.insert(TB_STUDENT, null, values);
+        closeDB();
+        return  id;
     }
 
     public Student getUser(){
@@ -197,7 +201,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 c.close();
             }
         }
-
+        closeDB();
         return u;
     }
 
@@ -217,6 +221,7 @@ public class DbHelper extends SQLiteOpenHelper {
         }else{
             item = null;
         }
+        closeDB();
         return item;
     }
 
@@ -235,6 +240,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
             c.close();
         }
+        closeDB();
         return items;
     }
 
@@ -251,6 +257,7 @@ public class DbHelper extends SQLiteOpenHelper {
             }while (c.moveToNext());
             c.close();
         }
+        closeDB();
         return items;
     }
 
@@ -265,7 +272,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 items.add(t);
             }while(c.moveToNext());
         }
-
+        closeDB();
         return items;
     }
 
@@ -273,23 +280,27 @@ public class DbHelper extends SQLiteOpenHelper {
     public int deleteUser(){
         SQLiteDatabase db = this.getWritableDatabase();
         int c = db.delete(TB_STUDENT, null, null);
+        closeDB();
         return c;
     }
 
     public int removeReminder(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         int c = db.delete(TB_REMINDER, KEY_ID + "=?", new String[]{String.valueOf(id)});
+        closeDB();
         return c;
     }
     public int removeUpdate(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         int c = db.delete(TB_UPDATE, KEY_ID + "=?", new String[]{String.valueOf(id)});
+        closeDB();
         return c;
     }
 
     public int removeUpdates(){
         SQLiteDatabase db = this.getWritableDatabase();
         int c = db.delete(TB_UPDATE,null, null);
+        closeDB();
         return c;
     }
 

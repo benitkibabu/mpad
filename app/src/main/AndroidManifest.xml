@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission
@@ -25,8 +24,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="com.google.android.gms.version"
+        <meta-data
+            android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
         <activity
             android:name=".HomeActivity"
             android:label="@string/app_name"
@@ -59,16 +60,6 @@
             android:parentActivityName=".HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.benitkibabu.ncigomobile.HomeActivity" />
-        </activity>
-        <activity
-            android:name=".UpdatesActivity"
-            android:label="@string/title_activity_news"
-            android:parentActivityName=".HomeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NewsView">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.benitkibabu.ncigomobile.HomeActivity" />
@@ -123,7 +114,17 @@
         <receiver
             android:name="com.benitkibabu.services.GcmBroadcastReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
+
+        <activity
+            android:name=".DetailActivity"
+            android:label="@string/title_activity_detail"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.benitkibabu.ncigomobile.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>

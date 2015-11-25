@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * Created by Ben on 30/09/2015.
  */
-public class CustomReminderAdapter extends ArrayAdapter<ReminderItem> implements ListAdapter{
+public class ReminderAdapter extends ArrayAdapter<ReminderItem> implements ListAdapter{
     Context context;
     int layoutId;
     List<ReminderItem> items;
@@ -37,7 +37,7 @@ public class CustomReminderAdapter extends ArrayAdapter<ReminderItem> implements
     ReminderItem item;
     DbHelper db;
 
-    public CustomReminderAdapter(Context context, int layoutId, List<ReminderItem> items){
+    public ReminderAdapter(Context context, int layoutId, List<ReminderItem> items){
         super(context, layoutId, items);
         this.context = context;
         this.layoutId = layoutId;

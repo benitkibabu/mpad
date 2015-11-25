@@ -13,72 +13,46 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
-/**
- * Helper class for showing and canceling reminder
- * notifications.
- * <p/>
- * This class makes heavy use of the {@link NotificationCompat.Builder} helper
- * class to create notifications in a backward-compatible way.
- */
+
 public class MyNotification {
-    /**
-     * The unique identifier for this type of notification.
-     */
     private static final String NOTIFICATION_TAG = "Reminder";
 
-    public static void notify(final Context context,
-                              final String titleString,String bodyString, final int number) {
+    public static void notify(final Context context, final String id,
+                              final String title,String bodyString, final int number) {
         final Resources res = context.getResources();
 
-        // This image is used as the notification's large icon (thumbnail).
-        // TODO: Remove this if your notification has no relevant thumbnail.
         final Bitmap picture = BitmapFactory.decodeResource(res, R.drawable.nci_color);
 
-        final String ticker = titleString;
-        final String title =  titleString;
-
-        final String text = bodyString;
+        final String body = bodyString.length() > 100 ? bodyString.substring(0, 99): bodyString;
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-
                 .setDefaults(Notification.DEFAULT_ALL)
-                .setSmallIcon(R.drawable.ic_bell_white_36dp)
-                .setContentTitle(title)
-                .setContentText(text)
+                .setSmallIcon(R.drawable.nci_color)
+                .setContentTitle(context.getResources().getString(R.string.app_name))
+                .setContentText(title)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setColor(context.getResources().getColor(android.R.color.holo_blue_light))
                 .setLargeIcon(picture)
-                .setTicker(ticker)
+                .setTicker(title)
                 .setNumber(number)
-
-                        // If this notification relates to a past or upcoming event, you
-                        // should set the relevant time information using the setWhen
-                        // method below. If this call is omitted, the notification's
-                        // timestamp will by set to the time at which it was shown.
-                        // TODO: Call setWhen if this notification relates to a past or
-                        // upcoming event. The sole argument to this method should be
-                        // the notification timestamp in milliseconds.
-                        //.setWhen(...)
-
-                        // Set the pending intent to be initiated when the user touches
-                        // the notification.
                 .setContentIntent(
                         PendingIntent.getActivity(
                                 context,
-                                0,new Intent(context, HomeActivity.class),
-//                                new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com")),
+                                0, navIntent(context, id),
                                 PendingIntent.FLAG_UPDATE_CURRENT))
-
-                        // Show expanded text content on devices running Android 4.1 or
-                        // later.
                 .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText(text)
-                        .setBigContentTitle(title)
-                        .setSummaryText("Dummy summary text"))
-
-                        // Automatically dismiss the notification when it is touched.
+                        .bigText(title)
+                        .setBigContentTitle(context.getResources().getString(R.string.app_name))
+                .setSummaryText(body))
                 .setAutoCancel(true);
 
         notify(context, builder.build());
+    }
+
+    public static Intent navIntent(Context context, String id){
+        Intent i = new Intent(context, DetailActivity.class);
+        i.putExtra("id", id);
+        return i;
     }
 
     @TargetApi(Build.VERSION_CODES.ECLAIR)

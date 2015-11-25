@@ -32,10 +32,8 @@ import com.benitkibabu.helper.AppPreferenceManager;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Course;
 import com.benitkibabu.models.Student;
-import com.benitkibabu.models.User;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

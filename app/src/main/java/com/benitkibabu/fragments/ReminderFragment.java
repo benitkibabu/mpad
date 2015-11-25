@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.benitkibabu.adapters.CustomReminderAdapter;
+import com.benitkibabu.adapters.ReminderAdapter;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.ReminderItem;
 import com.benitkibabu.ncigomobile.R;
@@ -29,7 +29,7 @@ public class ReminderFragment extends Fragment {
 
     ListView listView;
     List<ReminderItem> reminderItemList;
-    CustomReminderAdapter adapter;
+    ReminderAdapter adapter;
 
     DbHelper db;
 
@@ -75,7 +75,7 @@ public class ReminderFragment extends Fragment {
 
         reminderItemList = db.getReminders();
 
-        adapter = new CustomReminderAdapter(getActivity(), R.layout.reminder_item,
+        adapter = new ReminderAdapter(getActivity(), R.layout.reminder_item,
                 reminderItemList);
 
         adapter.notifyDataSetChanged();

@@ -13,8 +13,6 @@ import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialogFragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -36,9 +34,7 @@ import com.benitkibabu.adapters.TimetableAdapter;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Timetable;
 
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -59,11 +55,8 @@ public class TimetableActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
@@ -81,7 +74,6 @@ public class TimetableActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         LoadData();
-
     }
 
     public static void LoadData(){
@@ -103,8 +95,8 @@ public class TimetableActivity extends AppCompatActivity {
     }
 
     void showEditDialog(){
-        DialogFragment newFragment = ShowInsertDialog.newInstance("insert");
-        newFragment.show(getSupportFragmentManager(), "insert");
+        DialogFragment newFragment = ShowInsertDialog.newInstance("insert_timetable");
+        newFragment.show(getSupportFragmentManager(), "insert_timetable");
     }
 
     public static class ShowInsertDialog extends AppCompatDialogFragment{
@@ -246,13 +238,12 @@ public class TimetableActivity extends AppCompatActivity {
         }
     }
 
-
     public static class PlaceholderFragment extends Fragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         String[] dayList;
         TimetableAdapter adapter;
-        RecyclerView recyclerView;
+        ListView listView;
 
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
@@ -292,12 +283,10 @@ public class TimetableActivity extends AppCompatActivity {
             adapter.clear();
             adapter.addAll(tempList);
 
-            recyclerView = (RecyclerView) view.findViewById(R.id.t_RecyclerView);
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
+            listView = (ListView) view.findViewById(R.id.t_RecyclerView);
 
             adapter.notifyDataSetChanged();
-            recyclerView.setAdapter(adapter);
+            listView.setAdapter(adapter);
 
             return view;
         }

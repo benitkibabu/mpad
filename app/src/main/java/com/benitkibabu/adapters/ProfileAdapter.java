@@ -16,11 +16,11 @@ import java.util.List;
 /**
  * Created by Ben on 29/09/2015.
  */
-public class CustomProfileAdapter extends ArrayAdapter<ProfileItem> {
+public class ProfileAdapter extends ArrayAdapter<ProfileItem> {
     Context context;
     int layoutId;
     List<ProfileItem> itemList;
-    public CustomProfileAdapter(Context context,  int layoutId, List<ProfileItem> itemList){
+    public ProfileAdapter(Context context, int layoutId, List<ProfileItem> itemList){
         super(context, layoutId, itemList);
         this.context = context;
         this.layoutId = layoutId;
