@@ -10,6 +10,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
 import com.benitkibabu.adapters.TimetableAdapter;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Timetable;

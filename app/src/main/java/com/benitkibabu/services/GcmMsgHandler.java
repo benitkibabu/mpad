@@ -1,11 +1,10 @@
 package com.benitkibabu.services;
 
 import android.app.IntentService;
-import android.content.Intent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
-import com.benitkibabu.ncigomobile.MyNotification;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 public class GcmMsgHandler extends IntentService {

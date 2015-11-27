@@ -6,10 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.benitkibabu.models.Student;
-import com.benitkibabu.models.UpdateItem;
 import com.benitkibabu.models.ReminderItem;
+import com.benitkibabu.models.Student;
 import com.benitkibabu.models.Timetable;
+import com.benitkibabu.models.UpdateItem;
 
 import java.util.ArrayList;
 import java.util.List;

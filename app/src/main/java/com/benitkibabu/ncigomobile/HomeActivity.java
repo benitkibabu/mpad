@@ -2,10 +2,9 @@ package com.benitkibabu.ncigomobile;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,9 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.benitkibabu.fragments.UpdatesFragment;
 import com.benitkibabu.fragments.ReminderFragment;
 import com.benitkibabu.fragments.SettingsFragment;
+import com.benitkibabu.fragments.UpdatesFragment;
 import com.benitkibabu.helper.AppPreferenceManager;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Student;

@@ -12,7 +12,6 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.MenuItem;
 import android.view.View;

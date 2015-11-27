@@ -1,8 +1,8 @@
 package com.benitkibabu.fragments;
 
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +12,6 @@ import com.benitkibabu.app.AppConfig;
 import com.benitkibabu.helper.AppPreferenceManager;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Student;
-import com.benitkibabu.models.User;
 import com.benitkibabu.ncigomobile.R;
 
 

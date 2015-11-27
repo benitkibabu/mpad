@@ -1,91 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:orientation="vertical">
+    android:layout_marginTop="@dimen/activity_horizontal_margin"
+    card_view:cardElevation="@dimen/card_view_default_elevation">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="4dp"
-        android:background="@color/colorPrimary">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="09:00"
-            android:textColor="@color/white"
-            android:id="@+id/ti_startT"
-            android:padding="10dp" />
+        android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/ti_startT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Web Design"
+            android:padding="10dp"
+            android:text="09:00"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/ti_endT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/ti_startT"
+            android:layout_gravity="center_vertical"
+            android:padding="10dp"
+            android:text="11:00"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
             android:id="@+id/ti_nameTv"
-            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/ti_startT"
             android:layout_toLeftOf="@+id/textView6"
             android:layout_toRightOf="@+id/ti_startT"
-            android:layout_toEndOf="@+id/ti_startT"
+            android:paddingBottom="5dp"
             android:paddingTop="5dp"
-            android:paddingBottom="5dp" />
+            android:text="Web Design"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Room"
             android:id="@+id/textView6"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:layout_above="@+id/ti_endT"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Sam Cogan"
+            android:layout_above="@+id/ti_endT"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:text="Room"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
             android:id="@+id/ti_lecturerTv"
-            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/ti_endT"
             android:layout_alignBottom="@+id/ti_endT"
+            android:layout_toEndOf="@+id/ti_endT"
             android:layout_toRightOf="@+id/ti_endT"
-            android:layout_toEndOf="@+id/ti_endT" />
+            android:text="Sam Cogan"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
+            android:id="@+id/ti_roomName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="SCR 3"
-            android:id="@+id/ti_roomName"
-            android:paddingRight="10dp"
-            android:paddingEnd="10dp"
-            android:paddingLeft="0dp"
-            android:paddingTop="0dp"
-            android:paddingBottom="0dp"
-            android:paddingStart="0dp"
-            android:textColor="@color/white"
             android:layout_alignBaseline="@+id/ti_lecturerTv"
             android:layout_alignBottom="@+id/ti_lecturerTv"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="11:00"
-            android:id="@+id/ti_endT"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:layout_gravity="center_vertical"
-            android:layout_below="@+id/ti_startT"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:paddingBottom="0dp"
+            android:paddingEnd="10dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="10dp"
+            android:paddingStart="0dp"
+            android:paddingTop="0dp"
+            android:text="SCR 3"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </RelativeLayout>
 
@@ -94,7 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?android:attr/selectableItemBackground"
-        android:focusable="true"
         android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal" />
-</LinearLayout>
+</android.support.v7.widget.CardView>

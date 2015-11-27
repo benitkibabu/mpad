@@ -5,9 +5,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login">Login </string>
+    <string name="title_activity_login" translatable="false">Login </string>
 
-    <string name="student_id_hint" translatable="false">x1234567@student.ncirl.ie</string>
+    <string name="student_id_hint" translatable="false">x1234567</string>
     <string name="password_hint">Enter password</string>
     <string name="image_view_cd">Content image here</string>
     <string name="set_reminder">Set A Reminder</string>
@@ -34,8 +34,8 @@
         Careers \&amp; Placements and IT Support staff</string>
     <string name="title_activity_nci_three_sixty">Nci 360 Activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="activity_nci360_page_title">Nci 360</string>
-    <string name="title_activity_360">ThreeSixtyPage</string>
+    <string name="activity_nci360_page_title" translatable="false">Nci 360</string>
+    <string name="title_activity_360" translatable="false">ThreeSixtyPage</string>
     <string name="view_services">View Services</string>
     <string name="nci_map">Map</string>
 
@@ -46,7 +46,7 @@
     <string name="title_activity_timetable">Timetable </string>
     <string name="add_string">Add</string>
     <string name="cancel">Cancel</string>
-    <string name="dummy_date">21-10-2015</string>
+    <string name="dummy_date" translatable="false">21-10-2015</string>
 
 
     <string-array name="course_list">
@@ -140,7 +140,7 @@
         <item>21:00</item>
     </string-array>
     <string name="title_activity_detail">Detail</string>
-    <string name="large_text">
+    <string name="large_text" translatable="false">
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -229,5 +229,5 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Main Activity</string>
 </resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_title">Sur</string>
+    <string name="about_nci_360">NCI360 est un service qui vous permet d\'interagir avec le Collège national des services administratifs et
+        de soutien de l \'\Irlande \ . De ces pages, vous serez information et des services en mesure de demande de soutien aux étudiants ,
+        Carrières \ &amp; Placements et du personnel de soutien TI</string>
+    <string name="account_title">Compte</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="add_string">Ajouter</string>
+    <string name="cancel">Annuler</string>
+    <string name="dummy_text_one">Nouvelles titre sera placé ici par la suite</string>
+    <string name="hello_blank_fragment">Bonjour fragment vierge </string>
+    <string name="image_view_cd">Contenu image </string>
+    <string name="logout_title">Se déconnecter </string>
+    <string name="navigation_drawer_close">Fermer la navigation tiroir</string>
+    <string name="navigation_drawer_open">Ouvrir le tiroir de navigation</string>
+    <string name="nci_map">Carte</string>
+    <string name="new_ticket_text">Nouveau billet </string>
+    <string name="password_hint">Entrer le mot de passe</string>
+    <string name="reminder_title">Rappel</string>
+    <string name="remove_text">Retirer</string>
+    <string name="section_format">Bonjour tout le monde à partir de la section : %1$d</string>
+    <string name="set_reminder">Définir un rappel </string>
+    <string name="settings_title">Paramètres</string>
+    <string name="timetable_title">Calendrier</string>
+    <string name="title_activity_detail">Détails</string>
+    <string name="title_activity_main">Activité principale</string>
+    <string name="title_activity_nci_three_sixty">Nci 360 Activité</string>
+    <string name="title_activity_news">Mises à jour</string>
+    <string name="title_activity_set_reminder">Définir un rappel</string>
+    <string name="title_activity_timetable">Calendrier</string>
+    <string name="update_title">Mises à jour</string>
+    <string name="view_services">Voir les services</string>
+    <string name="title_activity_login" translatable="false"></string>
+</resources>

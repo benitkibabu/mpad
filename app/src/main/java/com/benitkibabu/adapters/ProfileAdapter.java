@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.benitkibabu.models.ProfileItem;
-import com.benitkibabu.ncigomobile.R;
 
 import java.util.List;
 
