@@ -91,23 +91,4 @@ public class ReminderFragment extends Fragment {
 
         return view;
     }
-
-//
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        if(HomeActivity.getDrawerLayout().isDrawerOpen(GravityCompat.START)) {
-//            inflater.inflate(R.menu.menu_reminder, menu);
-//        }
-//        super.onCreateOptionsMenu(menu, inflater);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_remove_reminder:
-//                //MyNotification.notify(getActivity(), "Testing Notification", "Some work to be done here", 360);
-//                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 }

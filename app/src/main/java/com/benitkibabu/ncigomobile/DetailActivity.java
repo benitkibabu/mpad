@@ -11,8 +11,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.benitkibabu.app.AppConfig;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.UpdateItem;
+
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -38,7 +43,25 @@ public class DetailActivity extends AppCompatActivity {
                 goBack();
             }else{
                 setTitle(item.getTitle());
-                dateTv.setText(item.getDate());
+
+
+                Date d;
+                try {
+                    d = AppConfig.getDate(item.getDate());
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(d);
+
+                    int year = cal.get(Calendar.YEAR);
+                    int month = cal.get(Calendar.MONTH)  + 1;// because month starts at 0 NOT 1
+                    int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                    String dm = day + ", " + month + ", " + year;
+                    dateTv.setText(dm);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
                 bodyTv.setText(item.getBody());
             }
         }else{

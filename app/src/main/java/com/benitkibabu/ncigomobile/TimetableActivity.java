@@ -3,7 +3,6 @@ package com.benitkibabu.ncigomobile;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -15,38 +14,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.support.v7.widget.Toolbar;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.benitkibabu.adapters.TimetableAdapter;
+import com.benitkibabu.adapters.SectionsPagerAdapter;
+import com.benitkibabu.fragments.ItemFragment;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Timetable;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-public class TimetableActivity extends AppCompatActivity {
+public class TimetableActivity extends AppCompatActivity  implements ItemFragment.OnFragmentInteractionListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
 
     public static DbHelper db;
-    static List<Timetable> timetables = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +50,6 @@ public class TimetableActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         db = new DbHelper(this);
-        LoadData();
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -65,7 +57,6 @@ public class TimetableActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,27 +69,14 @@ public class TimetableActivity extends AppCompatActivity {
 
     }
 
-    public static void LoadData(){
-        if(db != null){
-            timetables.clear();
-            for(Timetable tt : db.getTimetable()){
-                if(tt != null){
-                    timetables.add(tt);
-                }
-            }
-            if(timetables.isEmpty()){
-                Timetable t = new Timetable("Empty N/A","N/A","N/A","N/A","N/A","N/A");
-                timetables.add(t);
-            }
-        }else{
-            Timetable t = new Timetable("Null N/A","N/A","N/A","N/A","N/A","N/A");
-            timetables.add(t);
-        }
-    }
-
     void showEditDialog(){
         DialogFragment newFragment = ShowInsertDialog.newInstance("insert_timetable");
         newFragment.show(getSupportFragmentManager(), "insert_timetable");
+    }
+
+    @Override
+    public void onFragmentInteraction(int id) {
+        Toast.makeText(this, "Item id: " + id + " clicked", Toast.LENGTH_LONG).show();
     }
 
     public static class ShowInsertDialog extends AppCompatDialogFragment{
@@ -115,11 +93,10 @@ public class TimetableActivity extends AppCompatActivity {
 
         public ShowInsertDialog(){}
 
-        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            // Get the layout inflater
+
             LayoutInflater inflater = getActivity().getLayoutInflater();
 
             final View view  = inflater.inflate(R.layout.edit_timetable_layout, null);
@@ -131,7 +108,8 @@ public class TimetableActivity extends AppCompatActivity {
             final TextView moduleName = (TextView) view.findViewById(R.id.et_module_name);
             final TextView lecturerName = (TextView) view.findViewById(R.id.et_lecturer_name);
 
-            builder.setTitle("Add New");
+            builder.setIcon(R.drawable.ic_timetable_black_48dp);
+            builder.setTitle("New");
             builder.setCancelable(false);
             builder.setView(view).setPositiveButton(R.string.add_string,
                     new DialogInterface.OnClickListener() {
@@ -152,7 +130,6 @@ public class TimetableActivity extends AppCompatActivity {
                                 Snackbar.make(view, "Not added", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
                             }
-                            LoadData();
                         }
                     })
                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -184,6 +161,7 @@ public class TimetableActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     void goBack(){
         Intent upIntent = new Intent(this, HomeActivity.class);
         upIntent.putExtra("fragment", "Updates");
@@ -197,97 +175,4 @@ public class TimetableActivity extends AppCompatActivity {
         }
     }
 
-
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return PlaceholderFragment.newInstance(position);
-        }
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 7;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "MONDAY";
-                case 1:
-                    return "TUESDAY";
-                case 2:
-                    return "WEDNESDAY";
-                case 3:
-                    return "THURSDAY";
-                case 4:
-                    return "FRIDAY";
-                case 5:
-                    return "SATURDAY";
-                case 6:
-                    return "SUNDAY";
-            }
-            return null;
-        }
-    }
-
-    public static class PlaceholderFragment extends Fragment {
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        String[] dayList;
-        TimetableAdapter adapter;
-        ListView listView;
-
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_timetable, container, false);
-            dayList = getResources().getStringArray(R.array.day_of_week_array);
-
-            int position = getArguments().getInt(ARG_SECTION_NUMBER);
-            List<Timetable> tempList = new ArrayList<>();
-            for(Timetable t : timetables){
-                if(t.getDay().equalsIgnoreCase(dayList[position])){
-                    tempList.add(t);
-                }
-            }
-            if(!tempList.isEmpty()){
-                Collections.sort(tempList, new Comparator<Timetable>() {
-                    @Override
-                    public int compare(Timetable t1, Timetable t2) {
-                        String start1 = t1.getStart();
-                        String start2 = t2.getStart();
-                        return start1.compareTo(start2);
-                    }
-                });
-            }
-            adapter = new TimetableAdapter(getActivity(), R.layout.timetable_item_layout);
-            adapter.clear();
-            adapter.addAll(tempList);
-
-            listView = (ListView) view.findViewById(R.id.t_RecyclerView);
-
-            adapter.notifyDataSetChanged();
-            listView.setAdapter(adapter);
-
-            return view;
-        }
-    }
 }

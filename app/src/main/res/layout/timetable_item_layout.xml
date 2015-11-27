@@ -1,107 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <FrameLayout
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="0dp"
+        android:layout_height="match_parent"
         android:elevation="4dp"
         android:background="@color/colorPrimary">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="09:00"
+            android:textColor="@color/white"
+            android:id="@+id/ti_startT"
+            android:padding="10dp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="09:00"
-                android:textColor="@color/white"
-                android:id="@+id/ti_startT"
-                android:padding="10dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Web Design"
+            android:id="@+id/ti_nameTv"
+            android:textColor="@color/white"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/textView6"
+            android:layout_toRightOf="@+id/ti_startT"
+            android:layout_toEndOf="@+id/ti_startT"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Web Design"
-                android:id="@+id/ti_nameTv"
-                android:textColor="@color/white"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/textView6"
-                android:layout_toRightOf="@+id/ti_startT"
-                android:layout_toEndOf="@+id/ti_startT"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Room"
+            android:id="@+id/textView6"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:layout_above="@+id/ti_endT"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Room"
-                android:id="@+id/textView6"
-                android:padding="10dp"
-                android:textColor="@color/white"
-                android:layout_above="@+id/ti_endT"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Sam Cogan"
+            android:id="@+id/ti_lecturerTv"
+            android:textColor="@color/white"
+            android:layout_alignBaseline="@+id/ti_endT"
+            android:layout_alignBottom="@+id/ti_endT"
+            android:layout_toRightOf="@+id/ti_endT"
+            android:layout_toEndOf="@+id/ti_endT" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Sam Cogan"
-                android:id="@+id/ti_lecturerTv"
-                android:textColor="@color/white"
-                android:layout_alignBaseline="@+id/ti_endT"
-                android:layout_alignBottom="@+id/ti_endT"
-                android:layout_toRightOf="@+id/ti_endT"
-                android:layout_toEndOf="@+id/ti_endT" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="SCR 3"
+            android:id="@+id/ti_roomName"
+            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:paddingStart="0dp"
+            android:textColor="@color/white"
+            android:layout_alignBaseline="@+id/ti_lecturerTv"
+            android:layout_alignBottom="@+id/ti_lecturerTv"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="SCR 3"
-                android:id="@+id/ti_roomName"
-                android:paddingRight="10dp"
-                android:paddingEnd="10dp"
-                android:paddingLeft="0dp"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:paddingStart="0dp"
-                android:textColor="@color/white"
-                android:layout_alignBaseline="@+id/ti_lecturerTv"
-                android:layout_alignBottom="@+id/ti_lecturerTv"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="11:00"
+            android:id="@+id/ti_endT"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
+            android:layout_below="@+id/ti_startT"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="11:00"
-                android:id="@+id/ti_endT"
-                android:padding="10dp"
-                android:textColor="@color/white"
-                android:layout_gravity="center_vertical"
-                android:layout_below="@+id/ti_startT"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+    </RelativeLayout>
 
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/mainHolder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?android:attr/selectableItemBackground"
-            android:focusable="true"
-            android:clickable="true"
-            android:orientation="horizontal" />
-    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/mainHolder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:focusable="true"
+        android:clickable="true"
+        android:orientation="horizontal" />
 </LinearLayout>

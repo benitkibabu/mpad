@@ -69,11 +69,10 @@ public class UpdatesAdapter extends RecyclerView.Adapter<UpdatesAdapter.ViewHold
             Calendar cal = Calendar.getInstance();
             cal.setTime(d);
 
-            int year = cal.get(Calendar.YEAR);
-            int month = cal.get(Calendar.MONTH);
+            int month = cal.get(Calendar.MONTH) + 1;// because month starts at 0 NOT 1
             int day = cal.get(Calendar.DAY_OF_MONTH);
 
-            String dm = month + ", " + year;
+            String dm = day + ", " + month;
             holder.itemHolder.dateTv.setText(dm);
         } catch (ParseException e) {
             e.printStackTrace();

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">@android:color/holo_blue_light</color>
     <color name="colorPrimaryDark">@android:color/holo_blue_dark</color>
-    <color name="colorAccent">#09b0bc</color>
+    <color name="colorAccent">#60cbf4</color>
 
     <color name="white">#ffffff</color>
     <color name="black">#996e6e</color>
@@ -15,7 +15,7 @@
     <color name="primary_text_color">#1e1348</color>
     <color name="color_primary_light">#2b1d6f</color>
     <color name="light_blue">#0066ff</color>
-    <color name="dark_blue">#990066ff</color>
+    <color name="pale_blue">#990066ff</color>
 
     <color name="magenta">#c10084</color>
 

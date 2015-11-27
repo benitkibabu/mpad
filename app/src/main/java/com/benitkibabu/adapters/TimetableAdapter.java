@@ -26,11 +26,11 @@ public class TimetableAdapter extends ArrayAdapter<Timetable> implements ListAda
     List<Timetable> items;
     public ItemHolder itemHolder;
 
-    public TimetableAdapter(Context context, int layoutId){
+    public TimetableAdapter(Context context, int layoutId, List<Timetable> items){
         super(context, layoutId);
         this.context = context;
         this.layoutId = layoutId;
-        items = new ArrayList<>();
+        this.items = items;
     }
 
     public void clear() {
