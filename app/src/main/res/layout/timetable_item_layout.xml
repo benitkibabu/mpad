@@ -9,17 +9,18 @@
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="0dp"
-        android:elevation="2dp">
+        android:elevation="4dp"
+        android:background="@color/colorPrimary">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white">
+            android:layout_height="match_parent">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="09:00"
+                android:textColor="@color/white"
                 android:id="@+id/ti_startT"
                 android:padding="10dp" />
 
@@ -29,6 +30,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Web Design"
                 android:id="@+id/ti_nameTv"
+                android:textColor="@color/white"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@+id/textView6"
                 android:layout_toRightOf="@+id/ti_startT"
@@ -43,6 +45,7 @@
                 android:text="Room"
                 android:id="@+id/textView6"
                 android:padding="10dp"
+                android:textColor="@color/white"
                 android:layout_above="@+id/ti_endT"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
@@ -53,6 +56,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Sam Cogan"
                 android:id="@+id/ti_lecturerTv"
+                android:textColor="@color/white"
                 android:layout_alignBaseline="@+id/ti_endT"
                 android:layout_alignBottom="@+id/ti_endT"
                 android:layout_toRightOf="@+id/ti_endT"
@@ -70,6 +74,7 @@
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:paddingStart="0dp"
+                android:textColor="@color/white"
                 android:layout_alignBaseline="@+id/ti_lecturerTv"
                 android:layout_alignBottom="@+id/ti_lecturerTv"
                 android:layout_alignParentRight="true"
@@ -82,6 +87,7 @@
                 android:text="11:00"
                 android:id="@+id/ti_endT"
                 android:padding="10dp"
+                android:textColor="@color/white"
                 android:layout_gravity="center_vertical"
                 android:layout_below="@+id/ti_startT"
                 android:layout_alignParentLeft="true"

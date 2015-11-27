@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -12,51 +13,62 @@
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="0dp"
-        android:elevation="2dp"
+        android:minHeight="80dp"
+        card_view:cardBackgroundColor="@color/colorPrimary"
         card_view:cardCornerRadius="2dp"
-        card_view:cardElevation="2dp">
+        card_view:cardElevation="4dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:id="@+id/relativeLayout"
-            android:layout_margin="10dp">
+            android:padding="10dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/dummy_text_one"
                 android:id="@+id/titleTv"
                 android:textSize="16sp"
-                android:textColor="@color/primary_text_color"
+                android:textColor="@color/white"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_toLeftOf="@+id/dateTv"
-                android:layout_toStartOf="@+id/dateTv" />
+                android:layout_toStartOf="@+id/dateTv"
+                android:layout_alignParentEnd="true" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/bodyTv"
-                android:textColor="@color/primary_text_color"
-                android:layout_below="@+id/titleTv"
+                android:textColor="@color/light_gray"
+                android:textSize="12sp"
+                android:layout_below="@+id/u_newIcon"
+                android:layout_alignStart="@+id/titleTv"
                 android:layout_marginTop="10dp"
-                android:textSize="12sp" />
+                android:layout_toStartOf="@+id/dateTv" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/dummy_date"
                 android:id="@+id/dateTv"
-                android:textColor="@color/primary_text_color"
+                android:textColor="@color/light_gray"
+                android:textSize="12sp"
+                android:layout_below="@+id/u_newIcon"
+                android:layout_alignEnd="@+id/u_newIcon"
+                android:layout_marginTop="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/u_newIcon"
+                android:src="@drawable/ic_information_white_24dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:textSize="12sp"/>
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
 
@@ -68,11 +80,14 @@
             android:focusable="true"
             android:clickable="true"
             android:orientation="horizontal" />
-        <!--<View-->
+
+
+    </android.support.v7.widget.CardView>
+    <!--<View-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="1dp"-->
         <!--android:layout_gravity="bottom"-->
-        <!--android:background="@color/white"/>-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@color/color_primary_dark"/>-->
 
-    </android.support.v7.widget.CardView>
 </LinearLayout>
