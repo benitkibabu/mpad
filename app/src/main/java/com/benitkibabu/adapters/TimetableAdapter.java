@@ -49,8 +49,8 @@ public class TimetableAdapter extends ArrayAdapter<Timetable> implements ListAda
         View view = convertView;
 
         if(view == null) {
-            LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-            view  = inflater.inflate(layoutId, parent, false);
+            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            view  = inflater.inflate(layoutId, null);
             itemHolder = new ItemHolder();
             itemHolder.startTime = (TextView) view.findViewById(R.id.ti_startT);
             itemHolder.endTime = (TextView) view.findViewById(R.id.ti_endT);
@@ -76,5 +76,11 @@ public class TimetableAdapter extends ArrayAdapter<Timetable> implements ListAda
     public static class ItemHolder{
         TextView startTime, endTime, roomName, lecturerName,moduleName;
         LinearLayout clickable;
+    }
+
+    @Override
+    public int getCount() {
+
+        return items.size();
     }
 }
