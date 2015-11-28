@@ -32,4 +32,5 @@
     <string name="title_activity_login">S\'inscrire</string>
     <string name="room_string">Chambre</string>
     <string name="title_activity_settings">Paramètres</string>
+    <string name="title_activity_set_reminder">Rappel</string>
 </resources>

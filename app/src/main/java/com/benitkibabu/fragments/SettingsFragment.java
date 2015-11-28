@@ -61,8 +61,13 @@ public class SettingsFragment extends Fragment {
         String dvidTxt = "Device ID: " + pref.getStringValue("regId");
         device_id.setText(dvidTxt.substring(0, 50));
 
-        String mobileNo = AppConfig.getMobileIMEI(getActivity().getBaseContext());
-        phone.setText(mobileNo);
+        try {
+            String mobileNo = AppConfig.getMobileIMEI(getActivity().getBaseContext());
+            phone.setText(mobileNo);
+        }
+        catch (Exception ex){
+            phone.setText("No device ID");
+        }
 
         String vers = AppConfig.getVersion(getActivity().getBaseContext());
         version.setText(vers);
