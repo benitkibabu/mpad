@@ -31,5 +31,6 @@
     <string name="title_activity_timetable">Calendrier</string>
     <string name="update_title">Mises à jour</string>
     <string name="view_services">Voir les services</string>
-    <string name="title_activity_login" translatable="false"></string>
+    <string name="title_activity_login" translatable="false">S\'inscrire</string>
+    <string name="room_string">Chambre</string>
 </resources>

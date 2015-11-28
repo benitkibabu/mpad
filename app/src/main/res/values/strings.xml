@@ -5,7 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login" translatable="false">Login </string>
+    <string name="title_activity_login">Sign In </string>
 
     <string name="student_id_hint" translatable="false">x1234567</string>
     <string name="password_hint">Enter password</string>
@@ -230,4 +230,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_main">Main Activity</string>
+    <string name="room_string">Room</string>
 </resources>

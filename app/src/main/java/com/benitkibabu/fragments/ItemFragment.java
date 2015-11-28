@@ -137,17 +137,10 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
             mListener.onFragmentInteraction(timetables.get(position).getId());
         }
     }
 
-    /**
-     * The default content for this Fragment has a TextView that is shown when
-     * the list is empty. If you would like to change the text, call this method
-     * to supply the text it should use.
-     */
     public void setEmptyText(CharSequence emptyText) {
         View emptyView = mListView.getEmptyView();
 
