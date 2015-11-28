@@ -161,8 +161,8 @@ public class HomeActivity extends AppCompatActivity
             startActivity(i);
         }
         else if (id == R.id.nav_settings) {
-            Intent i = new Intent(this, SettingsActivity.class);
-            startActivity(i);
+            fragment = SettingsFragment.newInstance(item.getTitle().toString());
+            this.getIntent().putExtra("fragment", item.getTitle().toString());
         }
         else if (id == R.id.nav_logout) {
             logout();

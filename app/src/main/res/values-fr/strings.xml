@@ -9,7 +9,6 @@
     <string name="add_string">Ajouter</string>
     <string name="cancel">Annuler</string>
     <string name="dummy_text_one">Nouvelles titre sera placé ici par la suite</string>
-    <string name="hello_blank_fragment">Bonjour fragment vierge </string>
     <string name="image_view_cd">Contenu image </string>
     <string name="logout_title">Se déconnecter </string>
     <string name="navigation_drawer_close">Fermer la navigation tiroir</string>
@@ -27,24 +26,10 @@
     <string name="title_activity_main">Activité principale</string>
     <string name="title_activity_nci_three_sixty">Nci 360 Activité</string>
     <string name="title_activity_news">Mises à jour</string>
-    <string name="title_activity_set_reminder">Définir un rappel</string>
     <string name="title_activity_timetable">Calendrier</string>
     <string name="update_title">Mises à jour</string>
     <string name="view_services">Voir les services</string>
-    <string name="title_activity_login" translatable="false">S\'inscrire</string>
+    <string name="title_activity_login">S\'inscrire</string>
     <string name="room_string">Chambre</string>
     <string name="title_activity_settings">Paramètres</string>
-    <string name="pref_title_new_message_notifications">Nouvelles notifications de mise à jour</string>
-    <string name="pref_title_ringtone">Sonnerie</string>
-    <string name="pref_title_sync_frequency">fréquence de synchronisation</string>
-    <string name="pref_title_system_sync_settings">Paramètres de synchronisation du système</string>
-    <string name="pref_title_vibrate">Vibrer</string>
-    <string name="pref_title_social_recommendations">Activer recommandations sociaux</string>
-    <string name="pref_title_display_name">Afficher un nom</string>
-    <string name="pref_title_add_friends_to_messages">Ajouter des amis à messages</string>
-    <string name="pref_ringtone_silent">Silencieux</string>
-    <string name="pref_header_notifications">Notifications</string>
-    <string name="pref_header_general">Général</string>
-    <string name="pref_header_data_sync"><![CDATA[Données & synchroniser]]></string>
-    <string name="pref_description_social_recommendations"><![CDATA[Recommandations pour les personnes à contacter          en fonction de votre historique des messages]]></string>
 </resources>

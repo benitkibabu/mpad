@@ -21,6 +21,7 @@ public class AppPreferenceManager {
     private static final String PREF_NAME = "NCIGOAPP";
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
     private static final String KEY_REFRESH_RATE = "refreshRate";
+    private static final String KEY_REG_ID = "regId";
 
     public AppPreferenceManager(Context context){
         this._context = context;
