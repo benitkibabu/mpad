@@ -10,7 +10,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
+        android:layout_height="300dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -23,6 +23,13 @@
             app:expandedTitleTextAppearance="@style/expandedappbar"
             app:collapsedTitleTextAppearance="@style/collapsedappbar"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:fitsSystemWindows="true"
+                android:id="@+id/d_header_image"
+                android:src="@drawable/nci_360_logo"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

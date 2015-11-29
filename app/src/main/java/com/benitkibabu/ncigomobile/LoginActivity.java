@@ -83,8 +83,6 @@ public class LoginActivity extends AppCompatActivity {
             db.deleteUser();
         }
 
-        //getCourse();
-
         studentId = (EditText) findViewById(R.id.student_id_field);
         password = (EditText) findViewById(R.id.password_field);
         courseSpinner = (Spinner) findViewById(R.id.log_course_spinner);
@@ -313,7 +311,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(String msg) {
-                Snackbar.make(studentId, msg + "\n", Snackbar.LENGTH_LONG).show();
+                //Snackbar.make(studentId, msg + "\n", Snackbar.LENGTH_LONG).show();
             }
         }.execute(null, null, null);
     }

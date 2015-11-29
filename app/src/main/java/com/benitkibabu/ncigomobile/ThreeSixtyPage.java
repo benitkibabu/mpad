@@ -38,7 +38,8 @@ public class ThreeSixtyPage extends AppCompatActivity {
 
         fragmentList = new ArrayList<>();
         addFragments();
-        mSectionsPagerAdapter = new CustomPagerAdapter(getSupportFragmentManager(), fragmentList);
+        mSectionsPagerAdapter = new CustomPagerAdapter(getSupportFragmentManager(), fragmentList,
+                getResources().getStringArray(R.array.nci360_array));
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);

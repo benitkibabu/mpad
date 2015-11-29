@@ -35,7 +35,7 @@ public class NciMapActivity extends AppCompatActivity implements OnMapReadyCallb
                 .findFragmentById(R.id.map);
         if(f != null){
             SupportMapFragment sp = (SupportMapFragment)f;
-            sp.getMap();
+            sp.getMapAsync(this);
         }
     }
 
@@ -66,9 +66,10 @@ public class NciMapActivity extends AppCompatActivity implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng nci = new LatLng(53.3524601,-6.243814);
+        LatLng nci = new LatLng(53.3487801,-6.2426813);
+        mMap.setMyLocationEnabled(true);
         mMap.addMarker(new MarkerOptions().position(nci).title("National College of Ireland"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(nci));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(nci, 18));
 
     }
 }

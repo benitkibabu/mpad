@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="350dp"
+    android:layout_height="290dp"
     android:id="@+id/nav_header"
     android:background="@drawable/side_nav_bar"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -24,14 +24,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/nav_student_number"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:textSize="32dp"
+        android:textSize="20dp"
         android:text="Android Studio"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="android.studio@android.com"
-        android:textSize="32dp"
+        android:textSize="20dp"
         android:textColor="@color/light_gray"
         android:id="@+id/nav_course_name" />
 

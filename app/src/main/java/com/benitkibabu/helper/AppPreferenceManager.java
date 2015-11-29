@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 /**
- * Created by Ben on 25/10/2015.
+ * Created by Ben Kibabu on 25/10/2015.
  */
 
 public class AppPreferenceManager {
@@ -22,6 +22,7 @@ public class AppPreferenceManager {
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
     private static final String KEY_REFRESH_RATE = "refreshRate";
     private static final String KEY_REG_ID = "regId";
+    private static final String KEY_NOTIFICATION = "updateNotification";
 
     public AppPreferenceManager(Context context){
         this._context = context;
@@ -32,6 +33,18 @@ public class AppPreferenceManager {
     public void setString(String tag, String value){
         editor = pref.edit();
         editor.putString(tag, value);
+        editor.apply();
+    }
+
+    public void setBoolean(String tag, boolean value){
+        editor = pref.edit();
+        editor.putBoolean(tag, value);
+        editor.apply();
+    }
+
+    public void setInteger(String tag, int value){
+        editor = pref.edit();
+        editor.putInt(tag, value);
         editor.apply();
     }
 
@@ -58,5 +71,8 @@ public class AppPreferenceManager {
     public String getStringValue(String tag){
         return pref.getString(tag, "Null");
     }
+
+    public boolean getBoolean(String tag){return pref.getBoolean(tag, false);}
+    public int getInteger(String tag){return pref.getInt(tag, 0);}
 }
 

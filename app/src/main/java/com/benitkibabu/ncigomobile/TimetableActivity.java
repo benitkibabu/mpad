@@ -45,7 +45,8 @@ public class TimetableActivity extends AppCompatActivity  implements ItemFragmen
 
         db = new DbHelper(this);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),
+                getResources().getStringArray(R.array.day_of_week_array));
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 

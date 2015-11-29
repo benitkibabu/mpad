@@ -11,10 +11,12 @@ import java.util.List;
  */
 public class CustomPagerAdapter extends FragmentPagerAdapter {
     List<Fragment> fragmentList;
+    String[] titles;
 
-    public CustomPagerAdapter(FragmentManager fm, List<Fragment> fragmentList) {
+    public CustomPagerAdapter(FragmentManager fm, List<Fragment> fragmentList, String[] array) {
         super(fm);
         this.fragmentList = fragmentList;
+        titles = array;
     }
 
     @Override
@@ -30,14 +32,6 @@ public class CustomPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         //return fragmentList.get(position).getTag();
-        switch (position) {
-            case 0:
-                return "Home";
-            case 1:
-                return "Tickets";
-            case 2:
-                return "Appointment";
-        }
-        return null;
+        return titles[position];
     }
 }

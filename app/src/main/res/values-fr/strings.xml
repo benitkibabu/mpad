@@ -33,4 +33,36 @@
     <string name="room_string">Chambre</string>
     <string name="title_activity_settings">Paramètres</string>
     <string name="title_activity_set_reminder">Rappel</string>
+    <string name="general_string">Général:</string>
+    <string name="title_activity_nci_maps">Nci Plan</string>
+    <string name="dummy_student_number">Numéro d\'étudiant:</string>
+    <string name="dummy_email_text">Étudiant Email: x08424179@student.ncirl.ie</string>
+
+    <string-array name="type_array">
+        <item>NCI</item>
+        <item>SYNDICAT ÉTUDIANT</item>
+        <item>SUPPORT INFORMATIQUE</item>
+        <item>SOUTIEN À L\'APPRENTISSAGE</item>
+        <item>NCI CARRIÈRE</item>
+    </string-array>
+
+    <string-array name="nci360_array">
+        <item>DOMICILE</item>
+        <item>BILLETS</item>
+        <item>RENDEZ-VOUS</item>
+    </string-array>
+
+    <string-array name="day_of_week_array">
+        <item>LUNDI</item>
+        <item>MARDI</item>
+        <item>MERCREDI</item>
+        <item>JEUDI</item>
+        <item>VENDREDI</item>
+        <item>SAMEDI</item>
+        <item>DIMANCHE</item>
+    </string-array>
+    <string name="dummy_text_short_desc">Une brève description</string>
+    <string name="dummy_name_text">Nom</string>
+    <string name="pick_date_text">Choisis une date</string>
+    <string name="pick_time_text">Choisissez un moment</string>
 </resources>
