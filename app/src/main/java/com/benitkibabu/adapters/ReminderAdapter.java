@@ -56,7 +56,7 @@ public class ReminderAdapter extends ArrayAdapter<ReminderItem> implements ListA
             itemHolder.dateTv = (TextView) view.findViewById(R.id.dateTv);
             itemHolder.deleteBtn = (ImageButton) view.findViewById(R.id.del_button);
             itemHolder.swipeLayout = (SwipeLayout) view.findViewById(R.id.swipeLayout);
-            itemHolder.itemLayout = (LinearLayout) view.findViewById(R.id.item_layout_id);
+            //itemHolder.itemLayout = (LinearLayout) view.findViewById(R.id.item_layout_id);
             itemHolder.remTv = (TextView) view.findViewById(R.id.remTv);
 
             view.setTag(itemHolder);
