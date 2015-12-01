@@ -59,6 +59,17 @@
         <item>LEARNING SUPPORT</item>
         <item>NCI CAREER</item>
     </string-array>
+
+    <string-array name="topic_name">
+        <item>Tickets</item>
+        <item>Appointment</item>
+    </string-array>
+    <string-array name="service_name">
+        <item>IT Service</item>
+        <item>Student Support</item>
+        <item>Learning Support</item>
+    </string-array>
+
     <string-array name="nci360_array">
         <item>HOME</item>
         <item>TICKETS</item>
@@ -244,5 +255,9 @@
     <string name="pick_date_text">Pick a date</string>
     <string name="pick_time_text">Pick a time</string>
     <string name="dummy_name_text">Name</string>
+    <string name="choose_service_text">Choose Service:</string>
+    <string name="subject_string">Subject</string>
+    <string name="body_text">Message Body</string>
+    <string name="topic_text">Topic:</string>
 
 </resources>

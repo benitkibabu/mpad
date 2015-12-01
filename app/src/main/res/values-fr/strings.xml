@@ -65,4 +65,19 @@
     <string name="dummy_name_text">Nom</string>
     <string name="pick_date_text">Choisis une date</string>
     <string name="pick_time_text">Choisissez un moment</string>
+
+    <string-array name="topic_name">
+        <item>Billets</item>
+        <item>Rendez-vous</item>
+    </string-array>
+    <string-array name="service_name">
+        <item>Service IT</item>
+        <item>Soutien aux étudiants</item>
+        <item>Soutenir l\'apprentissage</item>
+    </string-array>
+    <string name="body_text">Corps du message</string>
+    <string name="choose_service_text">choisir un service:</string>
+    <string name="subject_string">Assujettir</string>
+    <string name="topic_text">Sujet</string>
+
 </resources>
