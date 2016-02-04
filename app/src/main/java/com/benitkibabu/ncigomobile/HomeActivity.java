@@ -22,6 +22,8 @@ import com.benitkibabu.helper.AppPreferenceManager;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Student;
 
+import menu.SocialFragment;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -152,7 +154,11 @@ public class HomeActivity extends AppCompatActivity
             Intent i = new Intent(this, TimetableActivity.class);
             startActivity(i);
         }
-        else if (id == R.id.nav_nci360) {
+        else if (id == R.id.nav_social) {
+            fragment = SocialFragment.newInstance(item.getTitle().toString());
+            this.getIntent().putExtra("fragment", item.getTitle().toString());
+        }
+        else if (id == R.id.nav_help) {
             Intent i = new Intent(this, ThreeSixtyPage.class);
             startActivity(i);
         }
