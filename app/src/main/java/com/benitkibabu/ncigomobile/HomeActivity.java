@@ -22,7 +22,7 @@ import com.benitkibabu.helper.AppPreferenceManager;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Student;
 
-import menu.SocialFragment;
+import com.benitkibabu.fragments.SocialFragment;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,9 +77,13 @@ public class HomeActivity extends AppCompatActivity
             if(frag != null) {
                 if (frag.equalsIgnoreCase("Updates")) {
                     fragment = UpdatesFragment.newInstance("Updates");
-                } else if (frag.equalsIgnoreCase("Reminder")) {
-                    fragment = ReminderFragment.newInstance("Reminder");
-                } else if (frag.equalsIgnoreCase("Settings")) {
+                }
+//                else if (frag.equalsIgnoreCase("Reminder")) {
+//                    fragment = ReminderFragment.newInstance("Reminder");
+//                }
+                else if (frag.equalsIgnoreCase("Social")) {
+                    fragment = SocialFragment.newInstance("Social");
+                }else if (frag.equalsIgnoreCase("Settings")) {
                     fragment = SettingsFragment.newInstance("Settings");
                 }
             }
@@ -146,10 +150,10 @@ public class HomeActivity extends AppCompatActivity
             fragment = UpdatesFragment.newInstance(item.getTitle().toString());
             this.getIntent().putExtra("fragment", item.getTitle().toString());
         }
-        else if (id == R.id.nav_reminder) {
-            fragment = ReminderFragment.newInstance(item.getTitle().toString());
-            this.getIntent().putExtra("fragment", item.getTitle().toString());
-        }
+//        else if (id == R.id.nav_reminder) {
+//            fragment = ReminderFragment.newInstance(item.getTitle().toString());
+//            this.getIntent().putExtra("fragment", item.getTitle().toString());
+//        }
         else if (id == R.id.nav_timetable) {
             Intent i = new Intent(this, TimetableActivity.class);
             startActivity(i);

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="menu.SocialFragment"
+    tools:context="com.benitkibabu.fragments.SocialFragment"
     android:padding="16dp"
     android:background="#703e3e">
 
@@ -13,7 +13,7 @@
         android:layout_height="75dp"
         android:text="Chat"
         android:id="@+id/chatBtn"
-        android:layout_below="@+id/sendMsgBtn"
+        android:layout_below="@+id/msgBtn"
         android:layout_centerHorizontal="true"
         android:background="@color/colorAccent"
         android:layout_marginTop="15dp" />
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:text="Send Message"
-        android:id="@+id/sendMsgBtn"
+        android:id="@+id/msgBtn"
         android:layout_marginTop="167dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"

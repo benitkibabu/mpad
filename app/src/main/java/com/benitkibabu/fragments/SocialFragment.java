@@ -1,24 +1,21 @@
-package menu;
+package com.benitkibabu.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.benitkibabu.ncigomobile.MessageActivity;
 import com.benitkibabu.ncigomobile.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SocialFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SocialFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
 
 
@@ -34,6 +31,8 @@ public class SocialFragment extends Fragment {
         return fragment;
     }
 
+    Button msgBtn, chatBtn, emailBtn;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +45,24 @@ public class SocialFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_social, container, false);
+        View v = inflater.inflate(R.layout.fragment_social, container, false);
+
+        if(v != null){
+            msgBtn = (Button) v.findViewById(R.id.msgBtn);
+            chatBtn = (Button) v.findViewById(R.id.chatBtn);
+            emailBtn = (Button) v.findViewById(R.id.emailBtn);
+
+
+            msgBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(v.getContext(), MessageActivity.class);
+                    startActivity(i);
+                }
+            });
+        }
+
+        return v;
     }
 
 }
