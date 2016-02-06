@@ -110,9 +110,7 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
 
         mListView.setOnItemClickListener(this);
 
-
         setEmptyText("Timetable Not Set");
-
 
         return view;
     }

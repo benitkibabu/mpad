@@ -68,7 +68,7 @@ public class DetailActivity extends AppCompatActivity {
             goBack();
         }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.favorite);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
