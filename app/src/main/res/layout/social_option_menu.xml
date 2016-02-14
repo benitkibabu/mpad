@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:orientation="horizontal"
+    android:background="@android:color/transparent"
+    android:gravity="center_horizontal">
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/callBtn"
+        android:background="@android:color/holo_green_light"
+        android:src="@android:drawable/stat_sys_phone_call" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/chatBtn"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:background="@color/colorAccent"
+        android:src="@android:drawable/sym_action_chat"
+        android:layout_gravity="center_horizontal|top" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/msgBtn"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:background="@color/colorPrimary"
+        android:src="@android:drawable/sym_action_email"
+        android:layout_gravity="right|top" />
+
+
+</LinearLayout>
