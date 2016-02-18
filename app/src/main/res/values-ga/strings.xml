@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_title">Maidir</string>
+    <string name="account_title">Cuntas</string>
+    <string name="action_settings">Socruithe</string>
+    <string name="add_string">Cuir</string>
+    <string name="body_text">Teachtaireacht Comhlacht</string>
+    <string name="cancel">Cealaigh</string>
+    <string name="choose_service_text">Roghnaigh Seirbhís </string>
+    <string name="dummy_email_text">Mac Léinn Ríomhphost : x123456789@student.ncirl.ie</string>
+    <string name="dummy_name_text">Ainm</string>
+    <string name="dummy_student_number">Uimhir Mhic Léinn </string>
+    <string name="dummy_text_one">Beidh teideal Nuacht a chur anseo sa deireadh </string>
+    <string name="dummy_text_short_desc">Tá cur síos gairid </string>
+    <string name="general_string">Go ginearálta: </string>
+    <string name="help_string">Cabhrú</string>
+    <string name="image_view_cd">image Ábhar anseo </string>
+    <string name="logout_title">Logáil Amach </string>
+    <string name="navigation_drawer_close">Dún nascleanúint tarraiceán </string>
+    <string name="navigation_drawer_open">Oscail tarraiceán nascleanúint </string>
+    <string name="nci_map">Léarscáil</string>
+    <string name="new_ticket_text">Ticéad nua </string>
+    <string name="password_hint">Iontráil focal faire </string>
+    <string name="pick_date_text">Pioc dáta </string>
+    <string name="pick_time_text">Pioc am </string>
+    <string name="reminder_title">meabhrúchán</string>
+    <string name="remove_text">bain</string>
+    <string name="room_string">seomra</string>
+    <string name="settings_title">Socruithe</string>
+    <string name="subject_string">ábhar</string>
+    <string name="timetable_title">Amchlár</string>
+    <string name="title_activity_detail">Sonraigh</string>
+    <string name="title_activity_login">Sínigh isteach </string>
+    <string name="title_activity_nci_maps">Léarscáil Nd </string>
+    <string name="title_activity_news">Nuashonruithe</string>
+    <string name="title_activity_set_reminder">meabhrúchán</string>
+    <string name="title_activity_settings">Socruithe</string>
+    <string name="title_activity_timetable">Amchlár</string>
+    <string name="topic_text">ábhar</string>
+    <string name="update_title">Nuashonruithe</string>
+    <string name="view_services">Féach ar Seirbhís </string>
+    <string name="about_nci_360"><![CDATA[Is NCI360 seirbhís a ligeann duit chun idirghníomhú leis an gColáiste Náisiúnta na hÉireann seirbhísí riaracháin agus tacaíochta . Ó na leathanaigh seo beidh tú in eolas a iarraidh ann agus seirbhísí ó Tacaíochta do Mhic Léinn , Gairmeacha \ & amp ; Socrúcháin agus foireann tacaíochta TF ]]></string>
+</resources>

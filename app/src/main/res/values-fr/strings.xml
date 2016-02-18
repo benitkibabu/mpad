@@ -18,13 +18,9 @@
     <string name="password_hint">Entrer le mot de passe</string>
     <string name="reminder_title">Rappel</string>
     <string name="remove_text">Retirer</string>
-    <string name="section_format">Bonjour tout le monde à partir de la section : %1$d</string>
-    <string name="set_reminder">Définir un rappel </string>
     <string name="settings_title">Paramètres</string>
     <string name="timetable_title">Calendrier</string>
     <string name="title_activity_detail">Détails</string>
-    <string name="title_activity_main">Activité principale</string>
-    <string name="title_activity_nci_three_sixty">Nci 360 Activité</string>
     <string name="title_activity_news">Mises à jour</string>
     <string name="title_activity_timetable">Calendrier</string>
     <string name="update_title">Mises à jour</string>
@@ -36,7 +32,7 @@
     <string name="general_string">Général:</string>
     <string name="title_activity_nci_maps">Nci Plan</string>
     <string name="dummy_student_number">Numéro d\'étudiant:</string>
-    <string name="dummy_email_text">Étudiant Email: x08424179@student.ncirl.ie</string>
+    <string name="dummy_email_text">Étudiant Email: x123456789@student.ncirl.ie</string>
 
     <string-array name="type_array">
         <item>NCI</item>
