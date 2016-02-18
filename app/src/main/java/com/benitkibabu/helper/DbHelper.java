@@ -20,7 +20,7 @@ import java.util.List;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "ncigodb";
-    private static final int DB_VERSION = 4;
+    private static final int DB_VERSION = 5;
 
     private static final String TB_REMINDER = "reminder";
     private static final String TB_TIMETABLE = "timetable";
@@ -36,6 +36,8 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_REGID = "reg_id";
     private static final String KEY_COURSE_NAME = "course";
+    private static final String KEY_FIRSTNAME = "first_name";
+    private static final String KEY_LASTNAME = "last_name";
 
     private static final String KEY_R_NAME = "name";
     private static final String KEY_R_SHORT_DESC = "short_desc";
@@ -73,7 +75,9 @@ public class DbHelper extends SQLiteOpenHelper {
             + KEY_PASSWORD + " TEXT,"
             + KEY_REGID + " TEXT,"
             + KEY_COURSE_NAME + " TEXT,"
-            + KEY_STATUS + " TEXT )" ;
+            + KEY_STATUS + " TEXT, "
+            + KEY_FIRSTNAME + " TEXT, "
+            + KEY_LASTNAME + " TEXT )" ;
 
     private static final String CREATE_REMINDER_TABLE = "CREATE TABLE "
             + TB_REMINDER + "("+KEY_ID + " TEXT PRIMARY KEY, "
@@ -181,7 +185,21 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(KEY_REGID, student.getReg_id());
         values.put(KEY_COURSE_NAME, student.getCourse());
         values.put(KEY_STATUS, student.getStatus());
+        values.put(KEY_FIRSTNAME, student.getFirstName());
+        values.put(KEY_LASTNAME, student.getLastName());
         long id = db.insert(TB_STUDENT, null, values);
+        closeDB();
+        return  id;
+    }
+
+    public int updateUser(Student student){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_FIRSTNAME, student.getFirstName());
+        values.put(KEY_LASTNAME, student.getLastName());
+
+        int id = db.update(TB_STUDENT, values, KEY_STUDENT_NO+"=?", new String[]{student.getStudentID()});
         closeDB();
         return  id;
     }
@@ -200,7 +218,9 @@ public class DbHelper extends SQLiteOpenHelper {
                         c.getString(c.getColumnIndex(KEY_PASSWORD)),
                         c.getString(c.getColumnIndex(KEY_REGID)),
                         c.getString(c.getColumnIndex(KEY_COURSE_NAME)),
-                        c.getString(c.getColumnIndex(KEY_STATUS)));
+                        c.getString(c.getColumnIndex(KEY_STATUS)),
+                        c.getString(c.getColumnIndex(KEY_FIRSTNAME)),
+                        c.getString(c.getColumnIndex(KEY_LASTNAME)));
                 c.close();
             }
         }

@@ -71,5 +71,8 @@
     <string name="topic_text">Sujet</string>
     <string name="help_string">Aidez-moi</string>
     <string name="nav_profile_name">Profil</string>
+    <string name="first_name_text">Prénom</string>
+    <string name="last_name_text">Nom de famille</string>
+    <string name="email_text">Email:</string>
 
 </resources>

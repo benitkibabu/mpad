@@ -263,6 +263,9 @@
     <string name="topic_text">Subject</string>
     <string name="nav_profile_name">Profile</string>
     <string name="remove_text">Remove</string>
-    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_profile" translatable="false">ProfileActivity</string>
+    <string name="first_name_text">First Name:</string>
+    <string name="last_name_text">Last Name:</string>
+    <string name="email_text">Email:</string>
 
 </resources>

@@ -168,6 +168,12 @@ public class HomeActivity extends AppCompatActivity
             fragment = SettingsFragment.newInstance(item.getTitle().toString());
             this.getIntent().putExtra("fragment", item.getTitle().toString());
         }
+
+        else if (id == R.id.nav_profile) {
+            Intent i = new Intent(this, ProfileActivity.class);
+            startActivity(i);
+        }
+
         else if (id == R.id.nav_logout) {
             logout();
         }

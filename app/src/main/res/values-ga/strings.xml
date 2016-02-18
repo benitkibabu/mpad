@@ -35,4 +35,7 @@
     <string name="view_services">Féach ar Seirbhís </string>
     <string name="about_nci_360"><![CDATA[Is NCI360 seirbhís a ligeann duit chun idirghníomhú leis an gColáiste Náisiúnta na hÉireann seirbhísí riaracháin agus tacaíochta . Ó na leathanaigh seo beidh tú in eolas a iarraidh ann agus seirbhísí ó Tacaíochta do Mhic Léinn , Gairmeacha \ & amp ; Socrúcháin agus foireann tacaíochta TF ]]></string>
     <string name="nav_profile_name">Próifíl</string>
+    <string name="first_name_text">Ainm</string>
+    <string name="last_name_text">Sloinne</string>
+    <string name="email_text">Ríomhphost:</string>
 </resources>

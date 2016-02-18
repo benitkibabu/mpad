@@ -127,8 +127,10 @@ public class LoginActivity extends AppCompatActivity {
                                 String reg_id = st.getString("reg_id");
                                 String course = st.getString("course");
                                 String status = st.getString("status");
+                                String first_name = st.getString("first_name");
+                                String last_name = st.getString("last_name");
 
-                                student = new Student(num, email, pass, reg_id, course, status);
+                                student = new Student(num, email, pass, reg_id, course, status, first_name, last_name);
                                 OnlineRC.updateStatus(student.getStudentID(), "ONLINE");
                                 goToMain();
 

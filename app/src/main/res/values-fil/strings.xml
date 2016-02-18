@@ -35,4 +35,7 @@
     <string name="topic_text">paksa</string>
     <string name="update_title">Updates</string>
     <string name="view_services">View Services</string>
+    <string name="first_name_text">Pangalan</string>
+    <string name="last_name_text">Huling pangalan</string>
+    <string name="email_text">Eamil:</string>
 </resources>
