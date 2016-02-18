@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_nci_360"><![CDATA[NCI360 ay isang serbisyo na nagpapahintulot sa iyo upang makipag-ugnayan sa National College of Ireland administratibo at suporta sa mga serbisyo . Mula sa mga pahina ikaw ay maaaring humiling ng impormasyon at mga serbisyo mula Student Support, I-bookmark Kami \ & amp; Placement at IT staff Support ]]></string>
+    <string name="about_title">tungkol sa </string>
+    <string name="account_title">Account</string>
+    <string name="action_settings">Mga Setting</string>
+    <string name="add_string">Idagdag</string>
+    <string name="body_text">Katawan ng Mensahe </string>
+    <string name="cancel">kanselahin</string>
+    <string name="choose_service_text">Pumili ng isang Serbisyo:</string>
+    <string name="dummy_email_text">Student Email: x12345678@student.ncirl.ie </string>
+    <string name="dummy_name_text">pangalan</string>
+    <string name="dummy_student_number">Number Student:</string>
+    <string name="dummy_text_one">title News ay ilalagay dito sa huli</string>
+    <string name="dummy_text_short_desc">Isang maikling paglalarawan</string>
+    <string name="general_string">pangkalahatan</string>
+    <string name="help_string">Tulong</string>
+    <string name="logout_title">log Out</string>
+    <string name="nav_profile_name">Profile</string>
+    <string name="nci_map">mapa</string>
+    <string name="new_ticket_text">New Ticket</string>
+    <string name="password_hint">Ilagay ang password</string>
+    <string name="remove_text">alisin</string>
+    <string name="room_string">kuwarto</string>
+    <string name="settings_title">Mga Setting</string>
+    <string name="subject_string">paksa</string>
+    <string name="timetable_title">talaorasan</string>
+    <string name="title_activity_detail">detalye</string>
+    <string name="title_activity_login">Mag-sign in</string>
+    <string name="title_activity_nci_maps">NCI Mapa</string>
+    <string name="title_activity_news">Updates</string>
+    <string name="title_activity_set_reminder">paalaala</string>
+    <string name="title_activity_settings">Mga Setting</string>
+    <string name="title_activity_timetable">talaorasan</string>
+    <string name="topic_text">paksa</string>
+    <string name="update_title">Updates</string>
+    <string name="view_services">View Services</string>
+</resources>

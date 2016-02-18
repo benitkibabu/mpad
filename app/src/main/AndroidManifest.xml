@@ -52,16 +52,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SetReminderActivity"
-            android:label="@string/title_activity_set_reminder"
-            android:parentActivityName=".HomeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.benitkibabu.ncigomobile.HomeActivity" />
-        </activity>
-        <activity
             android:name=".ThreeSixtyPage"
             android:label="@string/nci360_title"
             android:parentActivityName=".HomeActivity"
@@ -144,7 +134,16 @@
         <activity
             android:name=".MessageActivity"
             android:label="@string/title_activity_message"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.benitkibabu.ncigomobile.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>

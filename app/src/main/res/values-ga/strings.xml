@@ -14,16 +14,10 @@
     <string name="dummy_text_short_desc">Tá cur síos gairid </string>
     <string name="general_string">Go ginearálta: </string>
     <string name="help_string">Cabhrú</string>
-    <string name="image_view_cd">image Ábhar anseo </string>
     <string name="logout_title">Logáil Amach </string>
-    <string name="navigation_drawer_close">Dún nascleanúint tarraiceán </string>
-    <string name="navigation_drawer_open">Oscail tarraiceán nascleanúint </string>
     <string name="nci_map">Léarscáil</string>
     <string name="new_ticket_text">Ticéad nua </string>
     <string name="password_hint">Iontráil focal faire </string>
-    <string name="pick_date_text">Pioc dáta </string>
-    <string name="pick_time_text">Pioc am </string>
-    <string name="reminder_title">meabhrúchán</string>
     <string name="remove_text">bain</string>
     <string name="room_string">seomra</string>
     <string name="settings_title">Socruithe</string>
@@ -40,4 +34,5 @@
     <string name="update_title">Nuashonruithe</string>
     <string name="view_services">Féach ar Seirbhís </string>
     <string name="about_nci_360"><![CDATA[Is NCI360 seirbhís a ligeann duit chun idirghníomhú leis an gColáiste Náisiúnta na hÉireann seirbhísí riaracháin agus tacaíochta . Ó na leathanaigh seo beidh tú in eolas a iarraidh ann agus seirbhísí ó Tacaíochta do Mhic Léinn , Gairmeacha \ & amp ; Socrúcháin agus foireann tacaíochta TF ]]></string>
+    <string name="nav_profile_name">Próifíl</string>
 </resources>

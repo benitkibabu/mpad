@@ -9,14 +9,10 @@
     <string name="add_string">Ajouter</string>
     <string name="cancel">Annuler</string>
     <string name="dummy_text_one">Nouvelles titre sera placé ici par la suite</string>
-    <string name="image_view_cd">Contenu image </string>
     <string name="logout_title">Se déconnecter </string>
-    <string name="navigation_drawer_close">Fermer la navigation tiroir</string>
-    <string name="navigation_drawer_open">Ouvrir le tiroir de navigation</string>
     <string name="nci_map">Carte</string>
     <string name="new_ticket_text">Nouveau billet </string>
     <string name="password_hint">Entrer le mot de passe</string>
-    <string name="reminder_title">Rappel</string>
     <string name="remove_text">Retirer</string>
     <string name="settings_title">Paramètres</string>
     <string name="timetable_title">Calendrier</string>
@@ -59,8 +55,6 @@
     </string-array>
     <string name="dummy_text_short_desc">Une brève description</string>
     <string name="dummy_name_text">Nom</string>
-    <string name="pick_date_text">Choisis une date</string>
-    <string name="pick_time_text">Choisissez un moment</string>
 
     <string-array name="topic_name">
         <item>Billets</item>
@@ -76,5 +70,6 @@
     <string name="subject_string">Assujettir</string>
     <string name="topic_text">Sujet</string>
     <string name="help_string">Aidez-moi</string>
+    <string name="nav_profile_name">Profil</string>
 
 </resources>

@@ -1,28 +1,26 @@
 <resources>
     <string name="app_name" translatable="false">Nci Go</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Sign In </string>
 
     <string name="student_id_hint" translatable="false">x1234567</string>
     <string name="password_hint">Enter password</string>
-    <string name="image_view_cd">Content image here</string>
+    <string name="image_view_cd" translatable="false">Content image here</string>
     <string name="set_reminder" translatable="false">Set A Reminder</string>
     <string name="college_name" translatable="false">NCI</string>
 
     <string name="update_title">Updates</string>
     <string name="nci_su_title" translatable="false">Nci SU</string>
-    <string name="reminder_title">Reminder</string>
     <string name="timetable_title">Timetable</string>
     <string name="nci360_title" translatable="false">Nci 360</string>
     <string name="settings_title">Settings</string>
     <string name="about_title">About</string>
     <string name="account_title">Account</string>
     <string name="logout_title">Logout</string>
-    <string name="remove_text">Remove</string>
 
     <string name="about_nci_360">NCI360 is a service which allows you to interact with the National
         College of Ireland\'s administrative and support services.
@@ -253,8 +251,6 @@
     <string name="dummy_email_text">Student Email: x12345678@student.ncirl.ie</string>
     <string name="dummy_device_id_text" translatable="false">Phone ID: 223255123646215</string>
     <string name="dummy_text_short_desc">A short description</string>
-    <string name="pick_date_text">Pick a date</string>
-    <string name="pick_time_text">Pick a time</string>
     <string name="dummy_name_text">Name</string>
     <string name="help_string">Help</string>
     <string name="social_string" translatable="false">Social</string>
@@ -265,5 +261,8 @@
     <string name="choose_service_text">Choose a Service :</string>
     <string name="body_text">Message Body</string>
     <string name="topic_text">Subject</string>
+    <string name="nav_profile_name">Profile</string>
+    <string name="remove_text">Remove</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 
 </resources>

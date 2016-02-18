@@ -1,7 +1,6 @@
 package com.benitkibabu.ncigomobile;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -17,13 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.benitkibabu.app.AppConfig;
-import com.benitkibabu.app.AppController;
-import com.benitkibabu.fragments.ReminderFragment;
 import com.benitkibabu.fragments.SettingsFragment;
 import com.benitkibabu.fragments.UpdatesFragment;
 import com.benitkibabu.helper.AppPreferenceManager;
@@ -32,9 +24,6 @@ import com.benitkibabu.helper.OnlineRC;
 import com.benitkibabu.models.Student;
 
 import com.benitkibabu.fragments.SocialFragment;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
