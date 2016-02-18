@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Student;
 import com.benitkibabu.ncigomobile.R;
 
@@ -18,14 +19,14 @@ import java.util.List;
 /**
  * Created by Anu on 11/02/16.
  */
-public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.ViewHolder> {
+public class SocialListAdapter extends RecyclerView.Adapter<SocialListAdapter.ViewHolder> {
 
     Context context;
     int layoutId;
     List<Student> studentList;
     OnItemClickListener clickListener;
 
-    public StudentListAdapter(Context context, int layoutId){
+    public SocialListAdapter(Context context, int layoutId){
         this.context = context;
         this.layoutId = layoutId;
         this.studentList = new ArrayList<>();
@@ -52,8 +53,19 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Student student = studentList.get(position);
-        holder.itemHolder.statusView.setText("Online");
+
+        holder.itemHolder.statusView.setText(student.getStatus());
         holder.itemHolder.nameView.setText(student.getStudentID());
+
+        if(student.getStatus().equalsIgnoreCase("offline")){
+            holder.itemHolder.statusView.setTextColor(
+                    context.getResources().getColor(android.R.color.holo_red_light));
+        }else{
+            holder.itemHolder.statusView.setTextColor(
+                    context.getResources().getColor(android.R.color.holo_green_light));
+        }
+
+
 
     }
 

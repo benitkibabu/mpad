@@ -1,6 +1,7 @@
 package com.benitkibabu.ncigomobile;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,19 +11,30 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.benitkibabu.app.AppConfig;
+import com.benitkibabu.app.AppController;
 import com.benitkibabu.fragments.ReminderFragment;
 import com.benitkibabu.fragments.SettingsFragment;
 import com.benitkibabu.fragments.UpdatesFragment;
 import com.benitkibabu.helper.AppPreferenceManager;
 import com.benitkibabu.helper.DbHelper;
+import com.benitkibabu.helper.OnlineRC;
 import com.benitkibabu.models.Student;
 
 import com.benitkibabu.fragments.SocialFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -78,9 +90,6 @@ public class HomeActivity extends AppCompatActivity
                 if (frag.equalsIgnoreCase("Updates")) {
                     fragment = UpdatesFragment.newInstance("Updates");
                 }
-//                else if (frag.equalsIgnoreCase("Reminder")) {
-//                    fragment = ReminderFragment.newInstance("Reminder");
-//                }
                 else if (frag.equalsIgnoreCase("Social")) {
                     fragment = SocialFragment.newInstance("Social");
                 }else if (frag.equalsIgnoreCase("Settings")) {
@@ -150,10 +159,6 @@ public class HomeActivity extends AppCompatActivity
             fragment = UpdatesFragment.newInstance(item.getTitle().toString());
             this.getIntent().putExtra("fragment", item.getTitle().toString());
         }
-//        else if (id == R.id.nav_reminder) {
-//            fragment = ReminderFragment.newInstance(item.getTitle().toString());
-//            this.getIntent().putExtra("fragment", item.getTitle().toString());
-//        }
         else if (id == R.id.nav_timetable) {
             Intent i = new Intent(this, TimetableActivity.class);
             startActivity(i);
@@ -189,8 +194,18 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
+    void changeStatus(){
+        boolean result = OnlineRC.updateStatus(db.getUser().getStudentID(), "OFFLINE");
+        if(!result){
+            Log.d("Social Fragment", "Update Failed.");
+        }
+    }
+
     void logout() {
-        db.deleteUser();
+        if(db.getUser() != null) {
+            changeStatus();
+            db.deleteUser();
+        }
         pref.setLogin(false);
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);

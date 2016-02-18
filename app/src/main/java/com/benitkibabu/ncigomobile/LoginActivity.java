@@ -30,6 +30,7 @@ import com.benitkibabu.app.AppConfig;
 import com.benitkibabu.app.AppController;
 import com.benitkibabu.helper.AppPreferenceManager;
 import com.benitkibabu.helper.DbHelper;
+import com.benitkibabu.helper.OnlineRC;
 import com.benitkibabu.models.Course;
 import com.benitkibabu.models.Student;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -106,35 +107,40 @@ public class LoginActivity extends AppCompatActivity {
 
     //Post Request
     void postStudent(final String number, final String pass, final String courseName, final View view){
+
         final String req = "student";
         final String email = number + "@student.ncirl.ie";
         StringRequest request = new StringRequest(Request.Method.POST,AppConfig.LOGIN_API_URL,
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Log.d("Login Activity", response);
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Login Activity", response);
 
-                    try {
-                        JSONObject object = new JSONObject(response);
-                        boolean error = object.getBoolean("error");
-                        if(!error){
-                            JSONObject st = object.getJSONObject("0");
-                            String num = st.getString("student_no");
-                            String email = st.getString("student_email");
-                            String pass = st.getString("password");
-                            String reg_id = st.getString("reg_id");
-                            String course = st.getString("course");
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            boolean error = object.getBoolean("error");
+                            if(!error){
+                                JSONObject st = object.getJSONObject("0");
+                                String num = st.getString("student_no");
+                                String email = st.getString("student_email");
+                                String pass = st.getString("password");
+                                String reg_id = st.getString("reg_id");
+                                String course = st.getString("course");
+                                String status = st.getString("status");
 
-                            student = new Student(num, email, pass, reg_id, course);
-                            goToMain();
-                        }else{
-                            Snackbar.make(view, "Failed:" + object.getString("error_msg"), Snackbar.LENGTH_LONG).show();
+                                student = new Student(num, email, pass, reg_id, course, status);
+                                OnlineRC.updateStatus(student.getStudentID(), "ONLINE");
+                                goToMain();
+
+
+                            }else{
+                                Snackbar.make(view, "Failed:" + object.getString("error_msg"), Snackbar.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
-                }
-            }, new Response.ErrorListener() {
+                }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -168,6 +174,7 @@ public class LoginActivity extends AppCompatActivity {
                 params.put("password", pass);
                 params.put("reg_id", regid);
                 params.put("course",courseName);
+                params.put("status","ONLINE");
 
                 return params;
             }
@@ -179,75 +186,9 @@ public class LoginActivity extends AppCompatActivity {
         };
 
         AppController.getInstance().addToRequestQueue(request, req);
+
     }
 
-    //Get Request
-    void getStudent(final String number, final String pass, final String courseName, final View view){
-        final String req = "student";
-        final String email = number + "@student.ncirl.ie";
-        Uri url =  Uri.parse(AppConfig.LOGIN_API_URL)
-                .buildUpon()
-                .appendQueryParameter("tag", req)
-                .appendQueryParameter("student_no", number)
-                .appendQueryParameter("email", email)
-                .appendQueryParameter("password", pass)
-                .appendQueryParameter("reg_id", regid)
-                .appendQueryParameter("course", courseName)
-                .build();
-        Log.d("URL", url.toString());
-        StringRequest request = new StringRequest(Request.Method.GET, url.toString(),
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("Login Activity", response);
-
-                        try {
-                            JSONObject object = new JSONObject(response);
-                            boolean error = object.getBoolean("error");
-                            if(!error){
-                                JSONObject st = object.getJSONObject("0");
-                                String num = st.getString("student_no");
-                                String email = st.getString("student_email");
-                                String pass = st.getString("password");
-                                String reg_id = st.getString("reg_id");
-                                String course = st.getString("course");
-
-                                student = new Student(num, email, pass, reg_id, course);
-                                goToMain();
-                            }else{
-                                Snackbar.make(view, "Failed:" + object.getString("error_msg"), Snackbar.LENGTH_LONG).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                if (networkResponse != null) {
-                    Log.e("Volley", "Error. HTTP Status Code:"+networkResponse.statusCode);
-                }
-
-                if (error instanceof TimeoutError) {
-                    Log.e("Volley", "TimeoutError");
-                }else if(error instanceof NoConnectionError){
-                    Log.e("Volley", "NoConnectionError");
-                } else if (error instanceof AuthFailureError) {
-                    Log.e("Volley", "AuthFailureError");
-                } else if (error instanceof ServerError) {
-                    Log.e("Volley", "ServerError");
-                } else if (error instanceof NetworkError) {
-                    Log.e("Volley", "NetworkError");
-                } else if (error instanceof ParseError) {
-                    Log.e("Volley", "ParseError");
-                }
-            }
-        });
-
-        AppController.getInstance().addToRequestQueue(request, req);
-    }
 
     public void goToMain(){
         long id = db.addUser(student);

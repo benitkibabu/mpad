@@ -2,13 +2,9 @@ package com.benitkibabu.fragments;
 
 
 import android.app.Dialog;
-import android.app.DownloadManager;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -22,16 +18,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.benitkibabu.adapters.StudentListAdapter;
+import com.benitkibabu.adapters.SocialListAdapter;
 import com.benitkibabu.app.AppConfig;
 import com.benitkibabu.app.AppController;
+import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Student;
 import com.benitkibabu.ncigomobile.MessageActivity;
 import com.benitkibabu.ncigomobile.R;
@@ -40,9 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class SocialFragment extends Fragment {
@@ -52,11 +45,12 @@ public class SocialFragment extends Fragment {
     private String mParam1;
 
     RecyclerView recyclerView;
-    StudentListAdapter adapter;
+    SocialListAdapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
 
     private List<Student> studentList;
 
+    DbHelper db;
 
     public SocialFragment() {
         // Required empty public constructor
@@ -79,6 +73,7 @@ public class SocialFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
         }
+        db = new DbHelper(getActivity().getBaseContext());
     }
 
     @Override
@@ -93,10 +88,10 @@ public class SocialFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
 
-        adapter = new StudentListAdapter(getActivity(), R.layout.social_item_layout);
+        adapter = new SocialListAdapter(getActivity(), R.layout.social_item_layout);
         recyclerView.setAdapter(adapter);
 
-        adapter.setOnItemClickListener(new StudentListAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new SocialListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 ShowSocialMenuDialog();
@@ -118,7 +113,7 @@ public class SocialFragment extends Fragment {
         );
 
         //Load a list of students
-        LoadList();
+        //LoadList();
 
         return v;
     }
@@ -151,9 +146,13 @@ public class SocialFragment extends Fragment {
                             String pass = st.getString("password");
                             String reg_id = st.getString("reg_id");
                             String course = st.getString("course");
+                            String status = st.getString("status");
 
-                            Student student = new Student(num, email, pass, reg_id, course);
-                            studentList.add(student);
+                            Student student = new Student(num, email, pass, reg_id, course, status);
+
+                            if(!db.getUser().getStudentID().equalsIgnoreCase(num)) {
+                                studentList.add(student);
+                            }
                         }
 
                         adapter.clear();
@@ -243,6 +242,22 @@ public class SocialFragment extends Fragment {
     void ShowSocialMenuDialog(){
         DialogFragment newFragment = ShowSocialOptionMenu.newInstance("social_menu");
         newFragment.show(getActivity().getSupportFragmentManager(), "social_menu");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LoadList();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
 }

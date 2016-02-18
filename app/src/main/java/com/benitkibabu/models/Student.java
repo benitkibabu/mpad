@@ -9,6 +9,7 @@ public class Student {
     String reg_id;
     String password;
     String course;
+    String status;
 
     public Student(String studentID, String studentEmail,  String password, String reg_id, String course) {
         this.studentID = studentID;
@@ -16,6 +17,15 @@ public class Student {
         this.reg_id = reg_id;
         this.password = password;
         this.course = course;
+    }
+
+    public Student(String studentID, String studentEmail, String reg_id, String password, String course, String status) {
+        this.studentID = studentID;
+        this.studentEmail = studentEmail;
+        this.reg_id = reg_id;
+        this.password = password;
+        this.course = course;
+        this.status = status;
     }
 
     public String getReg_id() {
@@ -36,5 +46,9 @@ public class Student {
 
     public String getStudentEmail() {
         return studentEmail;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

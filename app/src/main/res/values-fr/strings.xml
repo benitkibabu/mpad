@@ -76,8 +76,9 @@
         <item>Soutenir l\'apprentissage</item>
     </string-array>
     <string name="body_text">Corps du message</string>
-    <string name="choose_service_text">choisir un service:</string>
+    <string name="choose_service_text">Choisir un Service:</string>
     <string name="subject_string">Assujettir</string>
     <string name="topic_text">Sujet</string>
+    <string name="help_string">Aidez-moi</string>
 
 </resources>
