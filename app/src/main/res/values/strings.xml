@@ -267,5 +267,9 @@
     <string name="first_name_text">First Name:</string>
     <string name="last_name_text">Last Name:</string>
     <string name="email_text">Email:</string>
+    <string name="choose_theme_text">Choose Theme:</string>
+    <string name="app_info_text">App Info:</string>
+    <string name="app_version_text">App Version</string>
+    <string name="device_text">Device</string>
 
 </resources>

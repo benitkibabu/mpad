@@ -47,12 +47,13 @@ public class ProfileActivity extends AppCompatActivity {
     EditText firstNameET, lastNameET, studentNoET, emailET;
     Student student;
     ImageButton editBtn;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         db = new DbHelper(this);
@@ -78,17 +79,20 @@ public class ProfileActivity extends AppCompatActivity {
                     editBtn.setImageResource(android.R.drawable.ic_menu_save);
                 }else{
                     editBtn.setImageResource(android.R.drawable.ic_menu_edit);
+
+                    if(!firstNameET.getText().toString().equals(student.getFirstName()) ||
+                            !lastNameET.getText().toString().equals(student.getLastName())){
+
+                        updateInfo(v, student.getStudentID(),
+                                firstNameET.getText().toString(),
+                                lastNameET.getText().toString());
+
+                    }else{
+                        Snackbar.make(v, "No Changes made", Snackbar.LENGTH_LONG).show();
+                    }
                 }
 
-                if(!firstNameET.getText().toString().equals(student.getFirstName()) ||
-                        !lastNameET.getText().toString().equals(student.getLastName())){
 
-                    updateInfo(v, student.getStudentID(),
-                            firstNameET.getText().toString(),
-                            lastNameET.getText().toString());
-                }else{
-                    Snackbar.make(v, "No Changes made", Snackbar.LENGTH_LONG).show();
-                }
             }
         });
 
@@ -96,13 +100,22 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     void LoadInfo(){
-        if(student != null){
-            setTitle(student.getFirstName() + " "+ student.getLastName());
+        if(student != null) {
+
+
+            setTitle(student.getFirstName() + " " + student.getLastName());
+
             firstNameET.setText(student.getFirstName());
             lastNameET.setText(student.getLastName());
             studentNoET.setText(student.getStudentID());
             emailET.setText(student.getStudentEmail());
         }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        LoadInfo();
     }
 
 
@@ -159,7 +172,9 @@ public class ProfileActivity extends AppCompatActivity {
                                     Snackbar.make(view, "Profile Updated!", Snackbar.LENGTH_LONG).show();
                                     break;
                                 }
-                                LoadInfo();
+                                finish();
+                                startActivity(getIntent());
+                                //LoadInfo();
 
                             }else{
                                 Snackbar.make(view, "Failed:" + object.getString("error_msg"), Snackbar.LENGTH_LONG).show();

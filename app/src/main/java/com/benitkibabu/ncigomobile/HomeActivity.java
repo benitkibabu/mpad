@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.benitkibabu.app.Utils;
 import com.benitkibabu.fragments.SettingsFragment;
 import com.benitkibabu.fragments.UpdatesFragment;
 import com.benitkibabu.helper.AppPreferenceManager;
@@ -39,6 +40,10 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //change theme of the application
+        Utils.onActivityCreateSetTheme(this);
+
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
