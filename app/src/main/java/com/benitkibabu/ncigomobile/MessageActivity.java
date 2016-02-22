@@ -19,12 +19,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.benitkibabu.app.Utils;
+
 public class MessageActivity extends AppCompatActivity {
 
     EditText phoneNumber, bodyText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //change theme of the application
+        Utils.onActivityCreateSetTheme(this);
+
         setContentView(R.layout.activity_message);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

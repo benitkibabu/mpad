@@ -24,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.benitkibabu.adapters.CustomPagerAdapter;
+import com.benitkibabu.app.Utils;
 import com.benitkibabu.fragments.NciThreeSixtyFragment;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Timetable;
@@ -44,6 +45,10 @@ public class ThreeSixtyPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //change theme of the application
+        Utils.onActivityCreateSetTheme(this);
+
         setContentView(R.layout.activity_360page);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.benitkibabu.adapters.SectionsPagerAdapter;
+import com.benitkibabu.app.Utils;
 import com.benitkibabu.fragments.ItemFragment;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.Timetable;
@@ -37,6 +38,10 @@ public class TimetableActivity extends AppCompatActivity  implements ItemFragmen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //change theme of the application
+        Utils.onActivityCreateSetTheme(this);
+
         setContentView(R.layout.activity_timetable);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

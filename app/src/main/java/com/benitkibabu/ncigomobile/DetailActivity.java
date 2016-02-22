@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.benitkibabu.app.AppConfig;
+import com.benitkibabu.app.Utils;
 import com.benitkibabu.helper.DbHelper;
 import com.benitkibabu.models.UpdateItem;
 
@@ -26,6 +27,10 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //change theme of the application
+        Utils.onActivityCreateSetTheme(this);
+
         setContentView(R.layout.activity_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
